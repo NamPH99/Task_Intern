@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d39ce88a057743ad93b19c22f5961367" Name="Diagram1">
+        <EntityTypeShape EntityType="DBWM2Model.DUAN" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBWM2Model.MODULE" Width="1.5" PointX="3" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBWM2Model.NGUOIDUNG" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBWM2Model.NHANVIEN" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBWM2Model.NHOMNGUOIDUNG" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBWM2Model.PHANQUYEN" Width="1.5" PointX="5.25" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBWM2Model.QL_CONGVIEC" Width="1.5" PointX="5.25" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBWM2Model.QL_NGUOIDUNGNHOMNGUOIDUNG" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBWM2Model.sysdiagram" Width="1.5" PointX="7.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBWM2Model.THANG" Width="1.5" PointX="0.75" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBWM2Model.TUAN" Width="1.5" PointX="3" PointY="12.875" IsExpanded="true" />
+        <AssociationConnector Association="DBWM2Model.FK_PHANQUYEN2" ManuallyRouted="false" />
+        <AssociationConnector Association="DBWM2Model.FL_CV_DUAN" ManuallyRouted="false" />
+        <AssociationConnector Association="DBWM2Model.FK_CONGVIEC_MODULE1" ManuallyRouted="false" />
+        <AssociationConnector Association="DBWM2Model.fk_nv_ngdung" ManuallyRouted="false" />
+        <AssociationConnector Association="DBWM2Model.FK_QL_NGUOIDUNGNHOMNGUOIDUNG2" ManuallyRouted="false" />
+        <AssociationConnector Association="DBWM2Model.fk_qlcv_nv" ManuallyRouted="false" />
+        <AssociationConnector Association="DBWM2Model.FK_PHANQUYEN1" ManuallyRouted="false" />
+        <AssociationConnector Association="DBWM2Model.FK_QL_NGUOIDUNGNHOMNGUOIDUNG1" ManuallyRouted="false" />
+        <AssociationConnector Association="DBWM2Model.FK_CV_TUAN" ManuallyRouted="false" />
+        <AssociationConnector Association="DBWM2Model.fk_giatri_namthang" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DBWM2Model.TODOLIST" Width="1.5" PointX="8.25" PointY="5.25" />
+        <AssociationConnector Association="DBWM2Model.FK_TDL_DA" />
+        <AssociationConnector Association="DBWM2Model.FK_TDL_NV" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

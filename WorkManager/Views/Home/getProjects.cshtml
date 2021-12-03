@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "getProjects";
+    Layout = "~/Views/Shared/LayoutPages.cshtml";
+}
+
+@model IEnumerable<WorkManager.Models.DUAN>
+
+@{
+    WorkManager.Models.DBWM2Entities1 db = new WorkManager.Models.DBWM2Entities1();
+}
+
+<div class="container-fluid" style="height:700px;margin-top:20px">
+    <div class="row justify-content-center" style="margin-top: 30px">
+
+        @foreach (var item in Model)
+        {
+
+            <div class="col-3 offset-md-1">
+                <div style="text-align:center;margin:40px;">
+                    <img style="width: 300px; height: 300px; border-radius: 50px" src="@Html.DisplayFor(modelItem => item.Icon)" />
+                </div>
+                <div style="text-align:center">
+                    <a href="@Url.Action("Work", "Work",new { MAMH = item.MAMH })">@Html.DisplayFor(modelItem => item.TENMH)</a>
+                  
+                </div>
+            </div>
+        }
+
+
+    </div>
+    
+</div>
+
+
+
+

@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBWMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="DUAN">
+    <Key>
+      <PropertyRef Name="MAMH" />
+    </Key>
+    <Property Name="MAMH" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="TENMH" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Icon" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PHANQUYENs" Relationship="Self.FK_PHANQUYEN2" FromRole="DUAN" ToRole="PHANQUYEN" />
+    <NavigationProperty Name="QL_CONGVIEC" Relationship="Self.FL_CV_DUAN" FromRole="DUAN" ToRole="QL_CONGVIEC" />
+  </EntityType>
+  <EntityType Name="MODULE">
+    <Key>
+      <PropertyRef Name="MAMODULE" />
+    </Key>
+    <Property Name="MAMODULE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TENMODULE" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="QL_CONGVIEC" Relationship="Self.FK_CONGVIEC_MODULE1" FromRole="MODULE" ToRole="QL_CONGVIEC" />
+  </EntityType>
+  <EntityType Name="NGUOIDUNG">
+    <Key>
+      <PropertyRef Name="TENDN" />
+    </Key>
+    <Property Name="TENDN" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MATKHAU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="HOATDONG" Type="Boolean" />
+    <NavigationProperty Name="NHANVIENs" Relationship="Self.FK_NHANVIEN_NGUOIDUNG" FromRole="NGUOIDUNG" ToRole="NHANVIEN" />
+    <NavigationProperty Name="QL_NGUOIDUNGNHOMNGUOIDUNG" Relationship="Self.FK_QL_NGUOIDUNGNHOMNGUOIDUNG2" FromRole="NGUOIDUNG" ToRole="QL_NGUOIDUNGNHOMNGUOIDUNG" />
+  </EntityType>
+  <EntityType Name="NHANVIEN">
+    <Key>
+      <PropertyRef Name="MANV" />
+    </Key>
+    <Property Name="MANV" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="HOTEN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SDT" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+    <Property Name="GIOITINH" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="DIACHI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TENDN" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="NGUOIDUNG" Relationship="Self.FK_NHANVIEN_NGUOIDUNG" FromRole="NHANVIEN" ToRole="NGUOIDUNG" />
+    <NavigationProperty Name="QL_CONGVIEC" Relationship="Self.FK_CONGVIEC_NHANVIEN" FromRole="NHANVIEN" ToRole="QL_CONGVIEC" />
+  </EntityType>
+  <EntityType Name="NHOMNGUOIDUNG">
+    <Key>
+      <PropertyRef Name="MANHOM" />
+    </Key>
+    <Property Name="MANHOM" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TENNHOM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GHICHU" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PHANQUYENs" Relationship="Self.FK_PHANQUYEN1" FromRole="NHOMNGUOIDUNG" ToRole="PHANQUYEN" />
+    <NavigationProperty Name="QL_NGUOIDUNGNHOMNGUOIDUNG" Relationship="Self.FK_QL_NGUOIDUNGNHOMNGUOIDUNG1" FromRole="NHOMNGUOIDUNG" ToRole="QL_NGUOIDUNGNHOMNGUOIDUNG" />
+  </EntityType>
+  <EntityType Name="PHANQUYEN">
+    <Key>
+      <PropertyRef Name="MANHOM" />
+      <PropertyRef Name="MAMH" />
+    </Key>
+    <Property Name="MANHOM" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MAMH" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="COQUYEN" Type="Boolean" />
+    <NavigationProperty Name="DUAN" Relationship="Self.FK_PHANQUYEN2" FromRole="PHANQUYEN" ToRole="DUAN" />
+    <NavigationProperty Name="NHOMNGUOIDUNG" Relationship="Self.FK_PHANQUYEN1" FromRole="PHANQUYEN" ToRole="NHOMNGUOIDUNG" />
+  </EntityType>
+  <EntityType Name="QL_CONGVIEC">
+    <Key>
+      <PropertyRef Name="MANV" />
+      <PropertyRef Name="MAMH" />
+    </Key>
+    <Property Name="MANV" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="MAMH" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="MATUAN" Type="Int32" Nullable="false" />
+    <Property Name="TENCONGVIEC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="TRANGTHAI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GHICHU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MAMODULE" Type="Int32" />
+    <Property Name="THOIGIAN" Type="Int32" />
+    <NavigationProperty Name="DUAN" Relationship="Self.FL_CV_DUAN" FromRole="QL_CONGVIEC" ToRole="DUAN" />
+    <NavigationProperty Name="MODULE" Relationship="Self.FK_CONGVIEC_MODULE1" FromRole="QL_CONGVIEC" ToRole="MODULE" />
+    <NavigationProperty Name="NHANVIEN" Relationship="Self.FK_CONGVIEC_NHANVIEN" FromRole="QL_CONGVIEC" ToRole="NHANVIEN" />
+    <NavigationProperty Name="TUAN" Relationship="Self.FK_CV_TUAN" FromRole="QL_CONGVIEC" ToRole="TUAN" />
+  </EntityType>
+  <EntityType Name="QL_NGUOIDUNGNHOMNGUOIDUNG">
+    <Key>
+      <PropertyRef Name="TENDN" />
+      <PropertyRef Name="MANHOM" />
+    </Key>
+    <Property Name="TENDN" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MANHOM" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="GHICHU" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="NGUOIDUNG" Relationship="Self.FK_QL_NGUOIDUNGNHOMNGUOIDUNG2" FromRole="QL_NGUOIDUNGNHOMNGUOIDUNG" ToRole="NGUOIDUNG" />
+    <NavigationProperty Name="NHOMNGUOIDUNG" Relationship="Self.FK_QL_NGUOIDUNGNHOMNGUOIDUNG1" FromRole="QL_NGUOIDUNGNHOMNGUOIDUNG" ToRole="NHOMNGUOIDUNG" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="THANG">
+    <Key>
+      <PropertyRef Name="GIATRI" />
+    </Key>
+    <Property Name="GIATRI" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="THANG1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="NAM" Type="Int32" />
+    <NavigationProperty Name="TUANs" Relationship="Self.FK_TUAN_THANG" FromRole="THANG" ToRole="TUAN" />
+  </EntityType>
+  <EntityType Name="TUAN">
+    <Key>
+      <PropertyRef Name="MATUAN" />
+    </Key>
+    <Property Name="MATUAN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GIATRI" Type="Int32" />
+    <Property Name="STTTUAN" Type="Int32" />
+    <Property Name="TENTUAN" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="TUNGAY" Type="DateTime" />
+    <Property Name="DENNGAY" Type="DateTime" />
+    <Property Name="SOGIOLAM" Type="Int32" />
+    <Property Name="TINHTRANG" Type="Boolean" />
+    <NavigationProperty Name="QL_CONGVIEC" Relationship="Self.FK_CV_TUAN" FromRole="TUAN" ToRole="QL_CONGVIEC" />
+    <NavigationProperty Name="THANG" Relationship="Self.FK_TUAN_THANG" FromRole="TUAN" ToRole="THANG" />
+  </EntityType>
+  <Association Name="FK_PHANQUYEN2">
+    <End Role="DUAN" Type="Self.DUAN" Multiplicity="1" />
+    <End Role="PHANQUYEN" Type="Self.PHANQUYEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DUAN">
+        <PropertyRef Name="MAMH" />
+      </Principal>
+      <Dependent Role="PHANQUYEN">
+        <PropertyRef Name="MAMH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FL_CV_DUAN">
+    <End Role="DUAN" Type="Self.DUAN" Multiplicity="1" />
+    <End Role="QL_CONGVIEC" Type="Self.QL_CONGVIEC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DUAN">
+        <PropertyRef Name="MAMH" />
+      </Principal>
+      <Dependent Role="QL_CONGVIEC">
+        <PropertyRef Name="MAMH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CONGVIEC_MODULE1">
+    <End Role="MODULE" Type="Self.MODULE" Multiplicity="0..1" />
+    <End Role="QL_CONGVIEC" Type="Self.QL_CONGVIEC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MODULE">
+        <PropertyRef Name="MAMODULE" />
+      </Principal>
+      <Dependent Role="QL_CONGVIEC">
+        <PropertyRef Name="MAMODULE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NHANVIEN_NGUOIDUNG">
+    <End Role="NGUOIDUNG" Type="Self.NGUOIDUNG" Multiplicity="0..1" />
+    <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NGUOIDUNG">
+        <PropertyRef Name="TENDN" />
+      </Principal>
+      <Dependent Role="NHANVIEN">
+        <PropertyRef Name="TENDN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QL_NGUOIDUNGNHOMNGUOIDUNG2">
+    <End Role="NGUOIDUNG" Type="Self.NGUOIDUNG" Multiplicity="1" />
+    <End Role="QL_NGUOIDUNGNHOMNGUOIDUNG" Type="Self.QL_NGUOIDUNGNHOMNGUOIDUNG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NGUOIDUNG">
+        <PropertyRef Name="TENDN" />
+      </Principal>
+      <Dependent Role="QL_NGUOIDUNGNHOMNGUOIDUNG">
+        <PropertyRef Name="TENDN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CONGVIEC_NHANVIEN">
+    <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="1" />
+    <End Role="QL_CONGVIEC" Type="Self.QL_CONGVIEC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="MANV" />
+      </Principal>
+      <Dependent Role="QL_CONGVIEC">
+        <PropertyRef Name="MANV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PHANQUYEN1">
+    <End Role="NHOMNGUOIDUNG" Type="Self.NHOMNGUOIDUNG" Multiplicity="1" />
+    <End Role="PHANQUYEN" Type="Self.PHANQUYEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHOMNGUOIDUNG">
+        <PropertyRef Name="MANHOM" />
+      </Principal>
+      <Dependent Role="PHANQUYEN">
+        <PropertyRef Name="MANHOM" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QL_NGUOIDUNGNHOMNGUOIDUNG1">
+    <End Role="NHOMNGUOIDUNG" Type="Self.NHOMNGUOIDUNG" Multiplicity="1" />
+    <End Role="QL_NGUOIDUNGNHOMNGUOIDUNG" Type="Self.QL_NGUOIDUNGNHOMNGUOIDUNG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHOMNGUOIDUNG">
+        <PropertyRef Name="MANHOM" />
+      </Principal>
+      <Dependent Role="QL_NGUOIDUNGNHOMNGUOIDUNG">
+        <PropertyRef Name="MANHOM" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CV_TUAN">
+    <End Role="TUAN" Type="Self.TUAN" Multiplicity="1" />
+    <End Role="QL_CONGVIEC" Type="Self.QL_CONGVIEC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TUAN">
+        <PropertyRef Name="MATUAN" />
+      </Principal>
+      <Dependent Role="QL_CONGVIEC">
+        <PropertyRef Name="MATUAN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TUAN_THANG">
+    <End Role="THANG" Type="Self.THANG" Multiplicity="0..1" />
+    <End Role="TUAN" Type="Self.TUAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="THANG">
+        <PropertyRef Name="GIATRI" />
+      </Principal>
+      <Dependent Role="TUAN">
+        <PropertyRef Name="GIATRI" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DBWMEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DUANs" EntityType="Self.DUAN" />
+    <EntitySet Name="MODULEs" EntityType="Self.MODULE" />
+    <EntitySet Name="NGUOIDUNGs" EntityType="Self.NGUOIDUNG" />
+    <EntitySet Name="NHANVIENs" EntityType="Self.NHANVIEN" />
+    <EntitySet Name="NHOMNGUOIDUNGs" EntityType="Self.NHOMNGUOIDUNG" />
+    <EntitySet Name="PHANQUYENs" EntityType="Self.PHANQUYEN" />
+    <EntitySet Name="QL_CONGVIEC" EntityType="Self.QL_CONGVIEC" />
+    <EntitySet Name="QL_NGUOIDUNGNHOMNGUOIDUNG" EntityType="Self.QL_NGUOIDUNGNHOMNGUOIDUNG" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="THANGs" EntityType="Self.THANG" />
+    <EntitySet Name="TUANs" EntityType="Self.TUAN" />
+    <AssociationSet Name="FK_PHANQUYEN2" Association="Self.FK_PHANQUYEN2">
+      <End Role="DUAN" EntitySet="DUANs" />
+      <End Role="PHANQUYEN" EntitySet="PHANQUYENs" />
+    </AssociationSet>
+    <AssociationSet Name="FL_CV_DUAN" Association="Self.FL_CV_DUAN">
+      <End Role="DUAN" EntitySet="DUANs" />
+      <End Role="QL_CONGVIEC" EntitySet="QL_CONGVIEC" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CONGVIEC_MODULE1" Association="Self.FK_CONGVIEC_MODULE1">
+      <End Role="MODULE" EntitySet="MODULEs" />
+      <End Role="QL_CONGVIEC" EntitySet="QL_CONGVIEC" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NHANVIEN_NGUOIDUNG" Association="Self.FK_NHANVIEN_NGUOIDUNG">
+      <End Role="NGUOIDUNG" EntitySet="NGUOIDUNGs" />
+      <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QL_NGUOIDUNGNHOMNGUOIDUNG2" Association="Self.FK_QL_NGUOIDUNGNHOMNGUOIDUNG2">
+      <End Role="NGUOIDUNG" EntitySet="NGUOIDUNGs" />
+      <End Role="QL_NGUOIDUNGNHOMNGUOIDUNG" EntitySet="QL_NGUOIDUNGNHOMNGUOIDUNG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CONGVIEC_NHANVIEN" Association="Self.FK_CONGVIEC_NHANVIEN">
+      <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+      <End Role="QL_CONGVIEC" EntitySet="QL_CONGVIEC" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHANQUYEN1" Association="Self.FK_PHANQUYEN1">
+      <End Role="NHOMNGUOIDUNG" EntitySet="NHOMNGUOIDUNGs" />
+      <End Role="PHANQUYEN" EntitySet="PHANQUYENs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QL_NGUOIDUNGNHOMNGUOIDUNG1" Association="Self.FK_QL_NGUOIDUNGNHOMNGUOIDUNG1">
+      <End Role="NHOMNGUOIDUNG" EntitySet="NHOMNGUOIDUNGs" />
+      <End Role="QL_NGUOIDUNGNHOMNGUOIDUNG" EntitySet="QL_NGUOIDUNGNHOMNGUOIDUNG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CV_TUAN" Association="Self.FK_CV_TUAN">
+      <End Role="TUAN" EntitySet="TUANs" />
+      <End Role="QL_CONGVIEC" EntitySet="QL_CONGVIEC" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TUAN_THANG" Association="Self.FK_TUAN_THANG">
+      <End Role="THANG" EntitySet="THANGs" />
+      <End Role="TUAN" EntitySet="TUANs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

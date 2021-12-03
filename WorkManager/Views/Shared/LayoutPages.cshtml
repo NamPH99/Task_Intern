@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CSS Website Layout</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <link href="~/css/styles.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="container-fluid" style="background-color:aliceblue">
+        <div class="row" style="border-bottom:0.1px solid ;height:100px">
+            <div class="col-lg-1" style="padding:10px">
+
+                <img src="https://media.ascvn.com.vn/Media/1_HOME_ASC/Images/logo-ascvn9d865d6-77.png" alt="ASCVN2020">
+            </div>
+            <div class="col-lg-11">
+                <h1 class="text">Asc Task Planing</h1>
+            </div>
+
+
+        </div>
+
+        <div>
+
+            @RenderBody()
+
+
+
+        </div>
+        <div id="footer" style="height: 120px; padding: 50px;margin-top:30px">
+            <p style=" text-align: center">Copyright © 2012. Bản quyền thuộc về ASCVN</p>
+        </div>
+    </div>
+
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+

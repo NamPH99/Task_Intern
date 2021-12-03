@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBWMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="DUAN">
+    <Key>
+      <PropertyRef Name="MAMH" />
+    </Key>
+    <Property Name="MAMH" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="TENMH" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Link" Type="nvarchar(max)" />
+    <Property Name="Icon" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="MODULE">
+    <Key>
+      <PropertyRef Name="MAMODULE" />
+    </Key>
+    <Property Name="MAMODULE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TENMODULE" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="NGUOIDUNG">
+    <Key>
+      <PropertyRef Name="TENDN" />
+    </Key>
+    <Property Name="TENDN" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="MATKHAU" Type="varchar" MaxLength="50" />
+    <Property Name="HOATDONG" Type="bit" />
+  </EntityType>
+  <EntityType Name="NHANVIEN">
+    <Key>
+      <PropertyRef Name="MANV" />
+    </Key>
+    <Property Name="MANV" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="HOTEN" Type="nvarchar" MaxLength="50" />
+    <Property Name="SDT" Type="nchar" MaxLength="15" />
+    <Property Name="GIOITINH" Type="nvarchar" MaxLength="10" />
+    <Property Name="DIACHI" Type="nvarchar" MaxLength="50" />
+    <Property Name="TENDN" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="NHOMNGUOIDUNG">
+    <Key>
+      <PropertyRef Name="MANHOM" />
+    </Key>
+    <Property Name="MANHOM" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="TENNHOM" Type="nvarchar" MaxLength="50" />
+    <Property Name="GHICHU" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PHANQUYEN">
+    <Key>
+      <PropertyRef Name="MANHOM" />
+      <PropertyRef Name="MAMH" />
+    </Key>
+    <Property Name="MANHOM" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="MAMH" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="COQUYEN" Type="bit" />
+  </EntityType>
+  <EntityType Name="QL_CONGVIEC">
+    <Key>
+      <PropertyRef Name="MANV" />
+      <PropertyRef Name="MAMH" />
+    </Key>
+    <Property Name="MANV" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="MAMH" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="MATUAN" Type="int" Nullable="false" />
+    <Property Name="TENCONGVIEC" Type="nvarchar" MaxLength="20" />
+    <Property Name="TRANGTHAI" Type="nvarchar(max)" />
+    <Property Name="GHICHU" Type="nvarchar(max)" />
+    <Property Name="MAMODULE" Type="int" />
+    <Property Name="THOIGIAN" Type="int" />
+  </EntityType>
+  <EntityType Name="QL_NGUOIDUNGNHOMNGUOIDUNG">
+    <Key>
+      <PropertyRef Name="TENDN" />
+      <PropertyRef Name="MANHOM" />
+    </Key>
+    <Property Name="TENDN" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="MANHOM" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="GHICHU" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="THANG">
+    <Key>
+      <PropertyRef Name="GIATRI" />
+    </Key>
+    <Property Name="GIATRI" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="THANG" Type="nvarchar" MaxLength="20" />
+    <Property Name="NGAYBATDAU" Type="date" />
+    <Property Name="NGAYKETTHUC" Type="date" />
+    <Property Name="NAM" Type="int" />
+  </EntityType>
+  <EntityType Name="TUAN">
+    <Key>
+      <PropertyRef Name="MATUAN" />
+    </Key>
+    <Property Name="MATUAN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GIATRI" Type="int" />
+    <Property Name="STTTUAN" Type="int" />
+    <Property Name="TENTUAN" Type="nvarchar" MaxLength="255" />
+    <Property Name="TUNGAY" Type="date" />
+    <Property Name="DENNGAY" Type="date" />
+    <Property Name="SOGIOLAM" Type="int" />
+    <Property Name="TINHTRANG" Type="bit" />
+  </EntityType>
+  <Association Name="FK_CONGVIEC_MODULE1">
+    <End Role="MODULE" Type="Self.MODULE" Multiplicity="0..1" />
+    <End Role="QL_CONGVIEC" Type="Self.QL_CONGVIEC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MODULE">
+        <PropertyRef Name="MAMODULE" />
+      </Principal>
+      <Dependent Role="QL_CONGVIEC">
+        <PropertyRef Name="MAMODULE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CONGVIEC_NHANVIEN">
+    <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="1" />
+    <End Role="QL_CONGVIEC" Type="Self.QL_CONGVIEC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="MANV" />
+      </Principal>
+      <Dependent Role="QL_CONGVIEC">
+        <PropertyRef Name="MANV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CV_TUAN">
+    <End Role="TUAN" Type="Self.TUAN" Multiplicity="1" />
+    <End Role="QL_CONGVIEC" Type="Self.QL_CONGVIEC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TUAN">
+        <PropertyRef Name="MATUAN" />
+      </Principal>
+      <Dependent Role="QL_CONGVIEC">
+        <PropertyRef Name="MATUAN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NHANVIEN_NGUOIDUNG">
+    <End Role="NGUOIDUNG" Type="Self.NGUOIDUNG" Multiplicity="0..1" />
+    <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NGUOIDUNG">
+        <PropertyRef Name="TENDN" />
+      </Principal>
+      <Dependent Role="NHANVIEN">
+        <PropertyRef Name="TENDN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PHANQUYEN1">
+    <End Role="NHOMNGUOIDUNG" Type="Self.NHOMNGUOIDUNG" Multiplicity="1" />
+    <End Role="PHANQUYEN" Type="Self.PHANQUYEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHOMNGUOIDUNG">
+        <PropertyRef Name="MANHOM" />
+      </Principal>
+      <Dependent Role="PHANQUYEN">
+        <PropertyRef Name="MANHOM" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PHANQUYEN2">
+    <End Role="DUAN" Type="Self.DUAN" Multiplicity="1" />
+    <End Role="PHANQUYEN" Type="Self.PHANQUYEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DUAN">
+        <PropertyRef Name="MAMH" />
+      </Principal>
+      <Dependent Role="PHANQUYEN">
+        <PropertyRef Name="MAMH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QL_NGUOIDUNGNHOMNGUOIDUNG1">
+    <End Role="NHOMNGUOIDUNG" Type="Self.NHOMNGUOIDUNG" Multiplicity="1" />
+    <End Role="QL_NGUOIDUNGNHOMNGUOIDUNG" Type="Self.QL_NGUOIDUNGNHOMNGUOIDUNG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHOMNGUOIDUNG">
+        <PropertyRef Name="MANHOM" />
+      </Principal>
+      <Dependent Role="QL_NGUOIDUNGNHOMNGUOIDUNG">
+        <PropertyRef Name="MANHOM" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QL_NGUOIDUNGNHOMNGUOIDUNG2">
+    <End Role="NGUOIDUNG" Type="Self.NGUOIDUNG" Multiplicity="1" />
+    <End Role="QL_NGUOIDUNGNHOMNGUOIDUNG" Type="Self.QL_NGUOIDUNGNHOMNGUOIDUNG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NGUOIDUNG">
+        <PropertyRef Name="TENDN" />
+      </Principal>
+      <Dependent Role="QL_NGUOIDUNGNHOMNGUOIDUNG">
+        <PropertyRef Name="TENDN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TUAN_THANG">
+    <End Role="THANG" Type="Self.THANG" Multiplicity="0..1" />
+    <End Role="TUAN" Type="Self.TUAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="THANG">
+        <PropertyRef Name="GIATRI" />
+      </Principal>
+      <Dependent Role="TUAN">
+        <PropertyRef Name="GIATRI" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FL_CV_DUAN">
+    <End Role="DUAN" Type="Self.DUAN" Multiplicity="1" />
+    <End Role="QL_CONGVIEC" Type="Self.QL_CONGVIEC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DUAN">
+        <PropertyRef Name="MAMH" />
+      </Principal>
+      <Dependent Role="QL_CONGVIEC">
+        <PropertyRef Name="MAMH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="getMonth" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="getProject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TENDN" Type="char" Mode="In" />
+  </Function>
+  <Function Name="getWeek" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="GiaTri" Type="int" Mode="In" />
+  </Function>
+  <Function Name="getWorkWeek" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="getWorkWeek1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="LOADBYMONTH" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MONTH" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="DBWMModelStoreContainer">
+    <EntitySet Name="DUAN" EntityType="Self.DUAN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MODULE" EntityType="Self.MODULE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NGUOIDUNG" EntityType="Self.NGUOIDUNG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NHOMNGUOIDUNG" EntityType="Self.NHOMNGUOIDUNG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PHANQUYEN" EntityType="Self.PHANQUYEN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QL_CONGVIEC" EntityType="Self.QL_CONGVIEC" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QL_NGUOIDUNGNHOMNGUOIDUNG" EntityType="Self.QL_NGUOIDUNGNHOMNGUOIDUNG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="THANG" EntityType="Self.THANG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TUAN" EntityType="Self.TUAN" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_CONGVIEC_MODULE1" Association="Self.FK_CONGVIEC_MODULE1">
+      <End Role="MODULE" EntitySet="MODULE" />
+      <End Role="QL_CONGVIEC" EntitySet="QL_CONGVIEC" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CONGVIEC_NHANVIEN" Association="Self.FK_CONGVIEC_NHANVIEN">
+      <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+      <End Role="QL_CONGVIEC" EntitySet="QL_CONGVIEC" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CV_TUAN" Association="Self.FK_CV_TUAN">
+      <End Role="TUAN" EntitySet="TUAN" />
+      <End Role="QL_CONGVIEC" EntitySet="QL_CONGVIEC" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NHANVIEN_NGUOIDUNG" Association="Self.FK_NHANVIEN_NGUOIDUNG">
+      <End Role="NGUOIDUNG" EntitySet="NGUOIDUNG" />
+      <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHANQUYEN1" Association="Self.FK_PHANQUYEN1">
+      <End Role="NHOMNGUOIDUNG" EntitySet="NHOMNGUOIDUNG" />
+      <End Role="PHANQUYEN" EntitySet="PHANQUYEN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHANQUYEN2" Association="Self.FK_PHANQUYEN2">
+      <End Role="DUAN" EntitySet="DUAN" />
+      <End Role="PHANQUYEN" EntitySet="PHANQUYEN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QL_NGUOIDUNGNHOMNGUOIDUNG1" Association="Self.FK_QL_NGUOIDUNGNHOMNGUOIDUNG1">
+      <End Role="NHOMNGUOIDUNG" EntitySet="NHOMNGUOIDUNG" />
+      <End Role="QL_NGUOIDUNGNHOMNGUOIDUNG" EntitySet="QL_NGUOIDUNGNHOMNGUOIDUNG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QL_NGUOIDUNGNHOMNGUOIDUNG2" Association="Self.FK_QL_NGUOIDUNGNHOMNGUOIDUNG2">
+      <End Role="NGUOIDUNG" EntitySet="NGUOIDUNG" />
+      <End Role="QL_NGUOIDUNGNHOMNGUOIDUNG" EntitySet="QL_NGUOIDUNGNHOMNGUOIDUNG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TUAN_THANG" Association="Self.FK_TUAN_THANG">
+      <End Role="THANG" EntitySet="THANG" />
+      <End Role="TUAN" EntitySet="TUAN" />
+    </AssociationSet>
+    <AssociationSet Name="FL_CV_DUAN" Association="Self.FL_CV_DUAN">
+      <End Role="DUAN" EntitySet="DUAN" />
+      <End Role="QL_CONGVIEC" EntitySet="QL_CONGVIEC" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

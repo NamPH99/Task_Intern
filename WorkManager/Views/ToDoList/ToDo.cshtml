@@ -1,0 +1,238 @@
+﻿
+@{
+    ViewBag.Title = "ToDo";
+    Layout = "~/Views/Shared/View.cshtml";
+    var MN = Session["MaNhom"] as string;
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+}
+@section scripts {
+    <script src="~/Scripts/JavaScript/ToDo.js"></script>
+}
+
+<div style="float:left;margin-top:-50px">
+    <h1>Tuần làm việc</h1>
+</div>
+<div style="float:right;margin-top:-50px">
+    @if (MN == "admin"||MN=="leader")
+    {
+        <button class="btn btn-primary" onclick="ShowMoldalDialogAddToDo()">Insert/Update</button>
+
+
+
+
+        <button type="button" onclick="DELETE()" class="btn btn-primary">Delete</button>
+       
+    }
+    else
+    {
+        <button class="btn btn-primary" hidden onclick="ShowMoldalDialogAddWorkWeek()">Insert/Update</button>
+
+
+
+
+        <button type="button" hidden onclick="DELETE()" class="btn btn-primary">Delete</button>
+        <button type="button" onclick="LockPlan()" hidden class="btn btn-primary">Lock Plan</button>
+    }
+
+</div>
+<div style="border: 1px solid black; height: 140px; margin-top: 80px; padding-top:15px" class="container-fluid; ">
+    <div class="row">
+        <div class="col-md-1" style="text-align:center;padding-top:5px;">
+            <h7>Nội Dung</h7>
+        </div>
+        <div class="col-md-3">
+            <input type="text" class="form-control" id="NoiDung">
+        </div>
+        <div class="col-md-2" style="text-align:center;padding-top:5px;">
+            <h7>Người Thực Hiện</h7>
+        </div>
+        <div class="col-md-3">
+            <select class="form-control" style="width: 70%" id="SelectNhanVien"></select>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label>Trễ Từ</label>
+                    </div>
+                    <div class="col-lg-4">
+                        <input type="number" style="width: 100px" class="form-control" id="ngaytre" min="1" max="12">
+                    </div>
+                    <div class="col-lg-3">
+                        <label>Trở lên</label>
+                    </div>
+                </div>
+                <br />
+
+            </div>
+        </div>
+
+
+    </div>
+    <div class="row">
+        <div class="col-md-4" style="text-align:center">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label>Đến Hạn</label>
+                    </div>
+                    <div class="col-lg-5">
+                        <input type="date" style="width: 170px" class="form-control" id="tungay">
+                    </div>
+                    <div class="col-lg-4">
+                        <input type="date" style="width: 170px" class="form-control" id="denngay">
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="col-md-5" style="margin-left:30px">
+            <form>
+                <h7>Trạng Thái :</h7>
+                <label class="radio-inline" style="margin-left:10px">
+                    <input type="radio" name="optradio" value="0"  >&ensp;Tất Cả
+                </label>
+                <label class="radio-inline" style="margin-left:10px">
+                    <input type="radio" name="optradio" value="1">&ensp;Đã Xong
+                </label>
+                <label class="radio-inline" style="margin-left:10px" >
+                    <input type="radio" name="optradio" checked value="2">&ensp;Chưa Xong
+                </label>
+            </form>
+        </div>
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-1">
+            <button type="button" onclick="searchToDo()" class="btn btn-primary">Search</button>
+        </div>
+    </div>
+</div>
+
+<table class="table table-striped" style="margin-top:40px" id="tblToDo">
+    <thead>
+        <tr>
+            <th><input type="checkbox" /></th>
+            <th>STT</th>
+            <th>Nội Dung To-Do</th>
+            <th>Người Thực Hiện</th>
+            <th>Thời  Hạn</th>
+            <th>Đến Hạn</th>
+            <th>Ngày Giao</th>
+            <th>Ghi Chú</th>
+            <th>Trạng Thái</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+<!-- The Modal -->
+<!-- The Modal -->
+<div class="modal" id="AddWorkToDo" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="myModalLablePhoto">
+    <div class="modal-dialog  modal-lg">
+        <div class="modal-content">
+            <input hidden id="" value="" />
+            <!-- Modal Header -->
+            <div class="modal-header" style="text-align:center">
+                <h4 class="modal-title" style="text-align:center" id="Control">THÊM TO-DO-LIST</h4>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <label>Nội Dung <span style="color:red">*</span></label>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" id="Noidung1">
+                            </div>
+
+                            
+                        </div>
+                        <br />
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <label>Người Thực Hiện<span style="color:red">*</span></label>
+                            </div>
+                            <div class="col-lg-6">
+                                <select class="form-control" style="width: 70%" id="SelectNhanVien1"></select>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <label>Ngày Giao<span style="color:red">*</span></label>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="date" style="width: 100%" class="form-control" id="firstday1">
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <label>Đến hạn<span style="color:red">*</span></label>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="date" style="width: 100%" class="form-control" id="LastDay1">
+                            </div>
+                        </div>
+                        <br />
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <label>Ghi Chú</label>
+                            </div>
+                            <div class="col-lg-6">
+                                @*<select class="form-control" style="width: 70%" id="MonthModal"></select>*@
+                                <input type="text" style="width: 600px" class="form-control" id="ghichu1">
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <label>Trạng thái</label>
+                                </div>
+                                <div class="col-lg-6">
+                                    @*<select class="form-control" style="width: 70%" id="MonthModal"></select>*@
+                                    <label class="radio-inline" style="margin-left:10px">
+                                        <input type="radio" name="optradio1" value="1">&ensp;Đã Xong
+                                    </label>
+                                    <label class="radio-inline" style="margin-left:10px">
+                                        <input type="radio" name="optradio1" checked value="0">&ensp;Chưa Xong
+                                    </label>
+                                </div>
+                            </div>
+                          
+                        </div>
+
+                        
+</form>< </div>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <div class="row"></div>
+                <div class="col-md-3"> <button class="btn btn-primary" onclick="insertToDo()">Lưu & Thêm</button></div>
+                <div class="col-md-3">   <button class="btn btn-primary" onclick="Update()">Lưu & đóng</button></div>
+                <div class="col-md-3">  <button type="button" class="btn btn-primary" data-dismiss="modal">Đóng</button></div>
+
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+

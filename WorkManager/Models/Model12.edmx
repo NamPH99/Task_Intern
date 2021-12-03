@@ -1,0 +1,1758 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DBWM2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DUAN">
+          <Key>
+            <PropertyRef Name="MAMH" />
+          </Key>
+          <Property Name="MAMH" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="TENMH" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Link" Type="nvarchar(max)" />
+          <Property Name="Icon" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="MODULE">
+          <Key>
+            <PropertyRef Name="MAMODULE" />
+          </Key>
+          <Property Name="MAMODULE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TENMODULE" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="NGUOIDUNG">
+          <Key>
+            <PropertyRef Name="TENDN" />
+          </Key>
+          <Property Name="TENDN" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="MATKHAU" Type="varchar" MaxLength="50" />
+          <Property Name="HOATDONG" Type="bit" />
+        </EntityType>
+        <EntityType Name="NHANVIEN">
+          <Key>
+            <PropertyRef Name="MANV" />
+          </Key>
+          <Property Name="MANV" Type="int" Nullable="false" />
+          <Property Name="HOTEN" Type="nvarchar" MaxLength="50" />
+          <Property Name="SDT" Type="nchar" MaxLength="15" />
+          <Property Name="GIOITINH" Type="nvarchar" MaxLength="10" />
+          <Property Name="DIACHI" Type="nvarchar" MaxLength="50" />
+          <Property Name="TENDN" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="NHOMNGUOIDUNG">
+          <Key>
+            <PropertyRef Name="MANHOM" />
+          </Key>
+          <Property Name="MANHOM" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TENNHOM" Type="nvarchar" MaxLength="50" />
+          <Property Name="GHICHU" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PHANQUYEN">
+          <Key>
+            <PropertyRef Name="MANHOM" />
+            <PropertyRef Name="MAMH" />
+          </Key>
+          <Property Name="MANHOM" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="MAMH" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="COQUYEN" Type="bit" />
+        </EntityType>
+        <EntityType Name="QL_CONGVIEC">
+          <Key>
+            <PropertyRef Name="MACV" />
+            <PropertyRef Name="MAMH" />
+          </Key>
+          <Property Name="MACV" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MAMH" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="MANV" Type="int" Nullable="false" />
+          <Property Name="MATUAN" Type="int" Nullable="false" />
+          <Property Name="TENCONGVIEC" Type="nvarchar" MaxLength="20" />
+          <Property Name="MAMODULE" Type="int" />
+          <Property Name="Nguồn gốc" Type="nvarchar" MaxLength="50" />
+          <Property Name="TRANGTHAI" Type="nvarchar(max)" />
+          <Property Name="GHICHU" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="QL_NGUOIDUNGNHOMNGUOIDUNG">
+          <Key>
+            <PropertyRef Name="TENDN" />
+            <PropertyRef Name="MANHOM" />
+          </Key>
+          <Property Name="TENDN" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="MANHOM" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="GHICHU" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="THANG">
+          <Key>
+            <PropertyRef Name="GIATRI" />
+            <PropertyRef Name="NAM" />
+          </Key>
+          <Property Name="GIATRI" Type="int" Nullable="false" />
+          <Property Name="NAM" Type="int" Nullable="false" />
+          <Property Name="THANG" Type="nvarchar" MaxLength="20" />
+          <Property Name="NGAYBATDAU" Type="date" />
+          <Property Name="NGAYKETTHUC" Type="date" />
+        </EntityType>
+        <EntityType Name="TODOLIST">
+          <Key>
+            <PropertyRef Name="MATDL" />
+          </Key>
+          <Property Name="MATDL" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOIDUNG" Type="nvarchar(max)" />
+          <Property Name="MANV" Type="int" />
+          <Property Name="THOIHAN" Type="nvarchar" MaxLength="50" />
+          <Property Name="NGAYGIAO" Type="date" />
+          <Property Name="DENHAN" Type="date" />
+          <Property Name="GHICHU" Type="nvarchar(max)" />
+          <Property Name="TRANGTHAI" Type="bit" />
+          <Property Name="MAMH" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="TUAN">
+          <Key>
+            <PropertyRef Name="MATUAN" />
+          </Key>
+          <Property Name="MATUAN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GIATRI" Type="int" />
+          <Property Name="STTTUAN" Type="int" />
+          <Property Name="TENTUAN" Type="nvarchar" MaxLength="255" />
+          <Property Name="TUNGAY" Type="date" />
+          <Property Name="DENNGAY" Type="date" />
+          <Property Name="SOGIOLAM" Type="int" />
+          <Property Name="TINHTRANG" Type="bit" />
+          <Property Name="Nam" Type="int" />
+        </EntityType>
+        <Association Name="FK_CONGVIEC_MODULE1">
+          <End Role="MODULE" Type="Self.MODULE" Multiplicity="0..1" />
+          <End Role="QL_CONGVIEC" Type="Self.QL_CONGVIEC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MODULE">
+              <PropertyRef Name="MAMODULE" />
+            </Principal>
+            <Dependent Role="QL_CONGVIEC">
+              <PropertyRef Name="MAMODULE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CV_TUAN">
+          <End Role="TUAN" Type="Self.TUAN" Multiplicity="1" />
+          <End Role="QL_CONGVIEC" Type="Self.QL_CONGVIEC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TUAN">
+              <PropertyRef Name="MATUAN" />
+            </Principal>
+            <Dependent Role="QL_CONGVIEC">
+              <PropertyRef Name="MATUAN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_giatri_namthang">
+          <End Role="THANG" Type="Self.THANG" Multiplicity="0..1" />
+          <End Role="TUAN" Type="Self.TUAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="THANG">
+              <PropertyRef Name="GIATRI" />
+              <PropertyRef Name="NAM" />
+            </Principal>
+            <Dependent Role="TUAN">
+              <PropertyRef Name="GIATRI" />
+              <PropertyRef Name="Nam" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_nv_ngdung">
+          <End Role="NGUOIDUNG" Type="Self.NGUOIDUNG" Multiplicity="0..1" />
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NGUOIDUNG">
+              <PropertyRef Name="TENDN" />
+            </Principal>
+            <Dependent Role="NHANVIEN">
+              <PropertyRef Name="TENDN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PHANQUYEN1">
+          <End Role="NHOMNGUOIDUNG" Type="Self.NHOMNGUOIDUNG" Multiplicity="1" />
+          <End Role="PHANQUYEN" Type="Self.PHANQUYEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHOMNGUOIDUNG">
+              <PropertyRef Name="MANHOM" />
+            </Principal>
+            <Dependent Role="PHANQUYEN">
+              <PropertyRef Name="MANHOM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PHANQUYEN2">
+          <End Role="DUAN" Type="Self.DUAN" Multiplicity="1" />
+          <End Role="PHANQUYEN" Type="Self.PHANQUYEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DUAN">
+              <PropertyRef Name="MAMH" />
+            </Principal>
+            <Dependent Role="PHANQUYEN">
+              <PropertyRef Name="MAMH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QL_NGUOIDUNGNHOMNGUOIDUNG1">
+          <End Role="NHOMNGUOIDUNG" Type="Self.NHOMNGUOIDUNG" Multiplicity="1" />
+          <End Role="QL_NGUOIDUNGNHOMNGUOIDUNG" Type="Self.QL_NGUOIDUNGNHOMNGUOIDUNG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHOMNGUOIDUNG">
+              <PropertyRef Name="MANHOM" />
+            </Principal>
+            <Dependent Role="QL_NGUOIDUNGNHOMNGUOIDUNG">
+              <PropertyRef Name="MANHOM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QL_NGUOIDUNGNHOMNGUOIDUNG2">
+          <End Role="NGUOIDUNG" Type="Self.NGUOIDUNG" Multiplicity="1" />
+          <End Role="QL_NGUOIDUNGNHOMNGUOIDUNG" Type="Self.QL_NGUOIDUNGNHOMNGUOIDUNG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NGUOIDUNG">
+              <PropertyRef Name="TENDN" />
+            </Principal>
+            <Dependent Role="QL_NGUOIDUNGNHOMNGUOIDUNG">
+              <PropertyRef Name="TENDN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_qlcv_nv">
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="1" />
+          <End Role="QL_CONGVIEC" Type="Self.QL_CONGVIEC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="MANV" />
+            </Principal>
+            <Dependent Role="QL_CONGVIEC">
+              <PropertyRef Name="MANV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TDL_DA">
+          <End Role="DUAN" Type="Self.DUAN" Multiplicity="0..1" />
+          <End Role="TODOLIST" Type="Self.TODOLIST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DUAN">
+              <PropertyRef Name="MAMH" />
+            </Principal>
+            <Dependent Role="TODOLIST">
+              <PropertyRef Name="MAMH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TDL_NV">
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
+          <End Role="TODOLIST" Type="Self.TODOLIST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="MANV" />
+            </Principal>
+            <Dependent Role="TODOLIST">
+              <PropertyRef Name="MANV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FL_CV_DUAN">
+          <End Role="DUAN" Type="Self.DUAN" Multiplicity="1" />
+          <End Role="QL_CONGVIEC" Type="Self.QL_CONGVIEC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DUAN">
+              <PropertyRef Name="MAMH" />
+            </Principal>
+            <Dependent Role="QL_CONGVIEC">
+              <PropertyRef Name="MAMH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="DELETEMONTH" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="GIATRI" Type="int" Mode="In" />
+          <Parameter Name="NAM" Type="int" Mode="In" />
+        </Function>
+        <Function Name="deleteTDL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MATDL" Type="int" Mode="In" />
+        </Function>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="GetAllToDo2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MAMH" Type="char" Mode="In" />
+        </Function>
+        <Function Name="getModalWeek" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Thang" Type="int" Mode="In" />
+          <Parameter Name="Nam" Type="int" Mode="In" />
+        </Function>
+        <Function Name="getMonth" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getmonth1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getmonth2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getmonth3" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getProject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TENDN" Type="char" Mode="In" />
+        </Function>
+        <Function Name="getWeek" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="GiaTri" Type="int" Mode="In" />
+        </Function>
+        <Function Name="getWorkWeek" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getWorkWeek1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getWorkWeek12" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="INSERTMONTH" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="GIATRI" Type="int" Mode="In" />
+          <Parameter Name="Nam" Type="int" Mode="In" />
+          <Parameter Name="THANG" Type="nvarchar" Mode="In" />
+          <Parameter Name="NGAYBATDAU" Type="date" Mode="In" />
+          <Parameter Name="NGAYKETTHUC" Type="date" Mode="In" />
+        </Function>
+        <Function Name="insertToDo3" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="noidung" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Manv" Type="int" Mode="In" />
+          <Parameter Name="ngaygiao" Type="date" Mode="In" />
+          <Parameter Name="denhan" Type="date" Mode="In" />
+          <Parameter Name="ghichu" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="trangthai" Type="int" Mode="In" />
+          <Parameter Name="MaMH" Type="char" Mode="In" />
+        </Function>
+        <Function Name="insertToDo4" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="noidung" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Manv" Type="int" Mode="In" />
+          <Parameter Name="ngaygiao" Type="date" Mode="In" />
+          <Parameter Name="denhan" Type="date" Mode="In" />
+          <Parameter Name="ghichu" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="trangthai" Type="int" Mode="In" />
+          <Parameter Name="MaMH" Type="char" Mode="In" />
+        </Function>
+        <Function Name="LOADBYMONTH" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MONTH" Type="int" Mode="In" />
+          <Parameter Name="YEAR" Type="int" Mode="In" />
+        </Function>
+        <Function Name="LOADBYMONTH1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MONTH" Type="int" Mode="In" />
+          <Parameter Name="YEAR" Type="int" Mode="In" />
+        </Function>
+        <Function Name="LOADBYMONTHAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="LOADBYMONTHAll1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="LOADBYMONTHTEST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MONTH" Type="int" Mode="In" />
+          <Parameter Name="YEAR" Type="int" Mode="In" />
+        </Function>
+        <Function Name="loadnam" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="LockPlan12" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="giatri" Type="int" Mode="In" />
+          <Parameter Name="nam" Type="int" Mode="In" />
+          <Parameter Name="stt" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sortToDo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NOIDUNG" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="MANV" Type="int" Mode="In" />
+          <Parameter Name="NGAYTRE" Type="int" Mode="In" />
+          <Parameter Name="TUNGAY" Type="date" Mode="In" />
+          <Parameter Name="DENNGAY" Type="date" Mode="In" />
+          <Parameter Name="TRANGTHAI" Type="int" Mode="In" />
+          <Parameter Name="MAMH" Type="char" Mode="In" />
+        </Function>
+        <Function Name="sortToDo1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NOIDUNG" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="MANV" Type="int" Mode="In" />
+          <Parameter Name="NGAYTRE" Type="int" Mode="In" />
+          <Parameter Name="TUNGAY" Type="date" Mode="In" />
+          <Parameter Name="DENNGAY" Type="date" Mode="In" />
+          <Parameter Name="TRANGTHAI" Type="int" Mode="In" />
+          <Parameter Name="MAMH" Type="char" Mode="In" />
+        </Function>
+        <Function Name="sortToDo2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NOIDUNG" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="MANV" Type="int" Mode="In" />
+          <Parameter Name="NGAYTRE" Type="int" Mode="In" />
+          <Parameter Name="TUNGAY" Type="date" Mode="In" />
+          <Parameter Name="DENNGAY" Type="date" Mode="In" />
+          <Parameter Name="TRANGTHAI" Type="int" Mode="In" />
+          <Parameter Name="MAMH" Type="char" Mode="In" />
+        </Function>
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="TEST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MONTH" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UPDATEMONTH" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="GIATRI" Type="int" Mode="In" />
+          <Parameter Name="Nam" Type="int" Mode="In" />
+          <Parameter Name="THANG" Type="nvarchar" Mode="In" />
+          <Parameter Name="NGAYBATDAU" Type="date" Mode="In" />
+          <Parameter Name="NGAYKETTHUC" Type="date" Mode="In" />
+        </Function>
+        <Function Name="UPDATETODO1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MATDL" Type="int" Mode="In" />
+          <Parameter Name="noidung" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Manv" Type="int" Mode="In" />
+          <Parameter Name="ngaygiao" Type="date" Mode="In" />
+          <Parameter Name="denhan" Type="date" Mode="In" />
+          <Parameter Name="ghichu" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="trangthai" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UPDATETODO2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MATDL" Type="int" Mode="In" />
+          <Parameter Name="noidung" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Manv" Type="int" Mode="In" />
+          <Parameter Name="ngaygiao" Type="date" Mode="In" />
+          <Parameter Name="denhan" Type="date" Mode="In" />
+          <Parameter Name="ghichu" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="trangthai" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="DBWM2ModelStoreContainer">
+          <EntitySet Name="DUAN" EntityType="Self.DUAN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MODULE" EntityType="Self.MODULE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NGUOIDUNG" EntityType="Self.NGUOIDUNG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NHOMNGUOIDUNG" EntityType="Self.NHOMNGUOIDUNG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PHANQUYEN" EntityType="Self.PHANQUYEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QL_CONGVIEC" EntityType="Self.QL_CONGVIEC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QL_NGUOIDUNGNHOMNGUOIDUNG" EntityType="Self.QL_NGUOIDUNGNHOMNGUOIDUNG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="THANG" EntityType="Self.THANG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TODOLIST" EntityType="Self.TODOLIST" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TUAN" EntityType="Self.TUAN" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CONGVIEC_MODULE1" Association="Self.FK_CONGVIEC_MODULE1">
+            <End Role="MODULE" EntitySet="MODULE" />
+            <End Role="QL_CONGVIEC" EntitySet="QL_CONGVIEC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CV_TUAN" Association="Self.FK_CV_TUAN">
+            <End Role="TUAN" EntitySet="TUAN" />
+            <End Role="QL_CONGVIEC" EntitySet="QL_CONGVIEC" />
+          </AssociationSet>
+          <AssociationSet Name="fk_giatri_namthang" Association="Self.fk_giatri_namthang">
+            <End Role="THANG" EntitySet="THANG" />
+            <End Role="TUAN" EntitySet="TUAN" />
+          </AssociationSet>
+          <AssociationSet Name="fk_nv_ngdung" Association="Self.fk_nv_ngdung">
+            <End Role="NGUOIDUNG" EntitySet="NGUOIDUNG" />
+            <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PHANQUYEN1" Association="Self.FK_PHANQUYEN1">
+            <End Role="NHOMNGUOIDUNG" EntitySet="NHOMNGUOIDUNG" />
+            <End Role="PHANQUYEN" EntitySet="PHANQUYEN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PHANQUYEN2" Association="Self.FK_PHANQUYEN2">
+            <End Role="DUAN" EntitySet="DUAN" />
+            <End Role="PHANQUYEN" EntitySet="PHANQUYEN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QL_NGUOIDUNGNHOMNGUOIDUNG1" Association="Self.FK_QL_NGUOIDUNGNHOMNGUOIDUNG1">
+            <End Role="NHOMNGUOIDUNG" EntitySet="NHOMNGUOIDUNG" />
+            <End Role="QL_NGUOIDUNGNHOMNGUOIDUNG" EntitySet="QL_NGUOIDUNGNHOMNGUOIDUNG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QL_NGUOIDUNGNHOMNGUOIDUNG2" Association="Self.FK_QL_NGUOIDUNGNHOMNGUOIDUNG2">
+            <End Role="NGUOIDUNG" EntitySet="NGUOIDUNG" />
+            <End Role="QL_NGUOIDUNGNHOMNGUOIDUNG" EntitySet="QL_NGUOIDUNGNHOMNGUOIDUNG" />
+          </AssociationSet>
+          <AssociationSet Name="fk_qlcv_nv" Association="Self.fk_qlcv_nv">
+            <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+            <End Role="QL_CONGVIEC" EntitySet="QL_CONGVIEC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TDL_DA" Association="Self.FK_TDL_DA">
+            <End Role="DUAN" EntitySet="DUAN" />
+            <End Role="TODOLIST" EntitySet="TODOLIST" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TDL_NV" Association="Self.FK_TDL_NV">
+            <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+            <End Role="TODOLIST" EntitySet="TODOLIST" />
+          </AssociationSet>
+          <AssociationSet Name="FL_CV_DUAN" Association="Self.FL_CV_DUAN">
+            <End Role="DUAN" EntitySet="DUAN" />
+            <End Role="QL_CONGVIEC" EntitySet="QL_CONGVIEC" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBWM2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DUAN">
+          <Key>
+            <PropertyRef Name="MAMH" />
+          </Key>
+          <Property Name="MAMH" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="TENMH" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Icon" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PHANQUYENs" Relationship="Self.FK_PHANQUYEN2" FromRole="DUAN" ToRole="PHANQUYEN" />
+          <NavigationProperty Name="QL_CONGVIEC" Relationship="Self.FL_CV_DUAN" FromRole="DUAN" ToRole="QL_CONGVIEC" />
+          <NavigationProperty Name="TODOLISTs" Relationship="DBWM2Model.FK_TDL_DA" FromRole="DUAN" ToRole="TODOLIST" />
+        </EntityType>
+        <EntityType Name="MODULE">
+          <Key>
+            <PropertyRef Name="MAMODULE" />
+          </Key>
+          <Property Name="MAMODULE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TENMODULE" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="QL_CONGVIEC" Relationship="Self.FK_CONGVIEC_MODULE1" FromRole="MODULE" ToRole="QL_CONGVIEC" />
+        </EntityType>
+        <EntityType Name="NGUOIDUNG">
+          <Key>
+            <PropertyRef Name="TENDN" />
+          </Key>
+          <Property Name="TENDN" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MATKHAU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HOATDONG" Type="Boolean" />
+          <NavigationProperty Name="NHANVIENs" Relationship="Self.fk_nv_ngdung" FromRole="NGUOIDUNG" ToRole="NHANVIEN" />
+          <NavigationProperty Name="QL_NGUOIDUNGNHOMNGUOIDUNG" Relationship="Self.FK_QL_NGUOIDUNGNHOMNGUOIDUNG2" FromRole="NGUOIDUNG" ToRole="QL_NGUOIDUNGNHOMNGUOIDUNG" />
+        </EntityType>
+        <EntityType Name="NHANVIEN">
+          <Key>
+            <PropertyRef Name="MANV" />
+          </Key>
+          <Property Name="MANV" Type="Int32" Nullable="false" />
+          <Property Name="HOTEN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="GIOITINH" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DIACHI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TENDN" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="NGUOIDUNG" Relationship="Self.fk_nv_ngdung" FromRole="NHANVIEN" ToRole="NGUOIDUNG" />
+          <NavigationProperty Name="QL_CONGVIEC" Relationship="Self.fk_qlcv_nv" FromRole="NHANVIEN" ToRole="QL_CONGVIEC" />
+          <NavigationProperty Name="TODOLISTs" Relationship="DBWM2Model.FK_TDL_NV" FromRole="NHANVIEN" ToRole="TODOLIST" />
+        </EntityType>
+        <EntityType Name="NHOMNGUOIDUNG">
+          <Key>
+            <PropertyRef Name="MANHOM" />
+          </Key>
+          <Property Name="MANHOM" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TENNHOM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GHICHU" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PHANQUYENs" Relationship="Self.FK_PHANQUYEN1" FromRole="NHOMNGUOIDUNG" ToRole="PHANQUYEN" />
+          <NavigationProperty Name="QL_NGUOIDUNGNHOMNGUOIDUNG" Relationship="Self.FK_QL_NGUOIDUNGNHOMNGUOIDUNG1" FromRole="NHOMNGUOIDUNG" ToRole="QL_NGUOIDUNGNHOMNGUOIDUNG" />
+        </EntityType>
+        <EntityType Name="PHANQUYEN">
+          <Key>
+            <PropertyRef Name="MANHOM" />
+            <PropertyRef Name="MAMH" />
+          </Key>
+          <Property Name="MANHOM" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MAMH" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="COQUYEN" Type="Boolean" />
+          <NavigationProperty Name="DUAN" Relationship="Self.FK_PHANQUYEN2" FromRole="PHANQUYEN" ToRole="DUAN" />
+          <NavigationProperty Name="NHOMNGUOIDUNG" Relationship="Self.FK_PHANQUYEN1" FromRole="PHANQUYEN" ToRole="NHOMNGUOIDUNG" />
+        </EntityType>
+        <EntityType Name="QL_CONGVIEC">
+          <Key>
+            <PropertyRef Name="MACV" />
+            <PropertyRef Name="MAMH" />
+          </Key>
+          <Property Name="MACV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MAMH" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="MANV" Type="Int32" Nullable="false" />
+          <Property Name="MATUAN" Type="Int32" Nullable="false" />
+          <Property Name="TENCONGVIEC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="MAMODULE" Type="Int32" />
+          <Property Name="Nguồn_gốc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TRANGTHAI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GHICHU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DUAN" Relationship="Self.FL_CV_DUAN" FromRole="QL_CONGVIEC" ToRole="DUAN" />
+          <NavigationProperty Name="MODULE" Relationship="Self.FK_CONGVIEC_MODULE1" FromRole="QL_CONGVIEC" ToRole="MODULE" />
+          <NavigationProperty Name="NHANVIEN" Relationship="Self.fk_qlcv_nv" FromRole="QL_CONGVIEC" ToRole="NHANVIEN" />
+          <NavigationProperty Name="TUAN" Relationship="Self.FK_CV_TUAN" FromRole="QL_CONGVIEC" ToRole="TUAN" />
+        </EntityType>
+        <EntityType Name="QL_NGUOIDUNGNHOMNGUOIDUNG">
+          <Key>
+            <PropertyRef Name="TENDN" />
+            <PropertyRef Name="MANHOM" />
+          </Key>
+          <Property Name="TENDN" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MANHOM" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GHICHU" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="NGUOIDUNG" Relationship="Self.FK_QL_NGUOIDUNGNHOMNGUOIDUNG2" FromRole="QL_NGUOIDUNGNHOMNGUOIDUNG" ToRole="NGUOIDUNG" />
+          <NavigationProperty Name="NHOMNGUOIDUNG" Relationship="Self.FK_QL_NGUOIDUNGNHOMNGUOIDUNG1" FromRole="QL_NGUOIDUNGNHOMNGUOIDUNG" ToRole="NHOMNGUOIDUNG" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="THANG">
+          <Key>
+            <PropertyRef Name="GIATRI" />
+            <PropertyRef Name="NAM" />
+          </Key>
+          <Property Name="GIATRI" Type="Int32" Nullable="false" />
+          <Property Name="NAM" Type="Int32" Nullable="false" />
+          <Property Name="THANG1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="NGAYBATDAU" Type="DateTime" Precision="0" />
+          <Property Name="NGAYKETTHUC" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="TUANs" Relationship="Self.fk_giatri_namthang" FromRole="THANG" ToRole="TUAN" />
+        </EntityType>
+        <EntityType Name="TUAN">
+          <Key>
+            <PropertyRef Name="MATUAN" />
+          </Key>
+          <Property Name="MATUAN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GIATRI" Type="Int32" />
+          <Property Name="STTTUAN" Type="Int32" />
+          <Property Name="TENTUAN" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TUNGAY" Type="DateTime" Precision="0" />
+          <Property Name="DENNGAY" Type="DateTime" Precision="0" />
+          <Property Name="SOGIOLAM" Type="Int32" />
+          <Property Name="TINHTRANG" Type="Boolean" />
+          <Property Name="Nam" Type="Int32" />
+          <NavigationProperty Name="QL_CONGVIEC" Relationship="Self.FK_CV_TUAN" FromRole="TUAN" ToRole="QL_CONGVIEC" />
+          <NavigationProperty Name="THANG" Relationship="Self.fk_giatri_namthang" FromRole="TUAN" ToRole="THANG" />
+        </EntityType>
+        <Association Name="FK_PHANQUYEN2">
+          <End Role="DUAN" Type="Self.DUAN" Multiplicity="1" />
+          <End Role="PHANQUYEN" Type="Self.PHANQUYEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DUAN">
+              <PropertyRef Name="MAMH" />
+            </Principal>
+            <Dependent Role="PHANQUYEN">
+              <PropertyRef Name="MAMH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FL_CV_DUAN">
+          <End Role="DUAN" Type="Self.DUAN" Multiplicity="1" />
+          <End Role="QL_CONGVIEC" Type="Self.QL_CONGVIEC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DUAN">
+              <PropertyRef Name="MAMH" />
+            </Principal>
+            <Dependent Role="QL_CONGVIEC">
+              <PropertyRef Name="MAMH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CONGVIEC_MODULE1">
+          <End Role="MODULE" Type="Self.MODULE" Multiplicity="0..1" />
+          <End Role="QL_CONGVIEC" Type="Self.QL_CONGVIEC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MODULE">
+              <PropertyRef Name="MAMODULE" />
+            </Principal>
+            <Dependent Role="QL_CONGVIEC">
+              <PropertyRef Name="MAMODULE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_nv_ngdung">
+          <End Role="NGUOIDUNG" Type="Self.NGUOIDUNG" Multiplicity="0..1" />
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NGUOIDUNG">
+              <PropertyRef Name="TENDN" />
+            </Principal>
+            <Dependent Role="NHANVIEN">
+              <PropertyRef Name="TENDN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QL_NGUOIDUNGNHOMNGUOIDUNG2">
+          <End Role="NGUOIDUNG" Type="Self.NGUOIDUNG" Multiplicity="1" />
+          <End Role="QL_NGUOIDUNGNHOMNGUOIDUNG" Type="Self.QL_NGUOIDUNGNHOMNGUOIDUNG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NGUOIDUNG">
+              <PropertyRef Name="TENDN" />
+            </Principal>
+            <Dependent Role="QL_NGUOIDUNGNHOMNGUOIDUNG">
+              <PropertyRef Name="TENDN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_qlcv_nv">
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="1" />
+          <End Role="QL_CONGVIEC" Type="Self.QL_CONGVIEC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="MANV" />
+            </Principal>
+            <Dependent Role="QL_CONGVIEC">
+              <PropertyRef Name="MANV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PHANQUYEN1">
+          <End Role="NHOMNGUOIDUNG" Type="Self.NHOMNGUOIDUNG" Multiplicity="1" />
+          <End Role="PHANQUYEN" Type="Self.PHANQUYEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHOMNGUOIDUNG">
+              <PropertyRef Name="MANHOM" />
+            </Principal>
+            <Dependent Role="PHANQUYEN">
+              <PropertyRef Name="MANHOM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QL_NGUOIDUNGNHOMNGUOIDUNG1">
+          <End Role="NHOMNGUOIDUNG" Type="Self.NHOMNGUOIDUNG" Multiplicity="1" />
+          <End Role="QL_NGUOIDUNGNHOMNGUOIDUNG" Type="Self.QL_NGUOIDUNGNHOMNGUOIDUNG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHOMNGUOIDUNG">
+              <PropertyRef Name="MANHOM" />
+            </Principal>
+            <Dependent Role="QL_NGUOIDUNGNHOMNGUOIDUNG">
+              <PropertyRef Name="MANHOM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CV_TUAN">
+          <End Role="TUAN" Type="Self.TUAN" Multiplicity="1" />
+          <End Role="QL_CONGVIEC" Type="Self.QL_CONGVIEC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TUAN">
+              <PropertyRef Name="MATUAN" />
+            </Principal>
+            <Dependent Role="QL_CONGVIEC">
+              <PropertyRef Name="MATUAN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_giatri_namthang">
+          <End Role="THANG" Type="Self.THANG" Multiplicity="0..1" />
+          <End Role="TUAN" Type="Self.TUAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="THANG">
+              <PropertyRef Name="GIATRI" />
+              <PropertyRef Name="NAM" />
+            </Principal>
+            <Dependent Role="TUAN">
+              <PropertyRef Name="GIATRI" />
+              <PropertyRef Name="Nam" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBWM2Entities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DUANs" EntityType="Self.DUAN" />
+          <EntitySet Name="MODULEs" EntityType="Self.MODULE" />
+          <EntitySet Name="NGUOIDUNGs" EntityType="Self.NGUOIDUNG" />
+          <EntitySet Name="NHANVIENs" EntityType="Self.NHANVIEN" />
+          <EntitySet Name="NHOMNGUOIDUNGs" EntityType="Self.NHOMNGUOIDUNG" />
+          <EntitySet Name="PHANQUYENs" EntityType="Self.PHANQUYEN" />
+          <EntitySet Name="QL_CONGVIEC" EntityType="Self.QL_CONGVIEC" />
+          <EntitySet Name="QL_NGUOIDUNGNHOMNGUOIDUNG" EntityType="Self.QL_NGUOIDUNGNHOMNGUOIDUNG" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="THANGs" EntityType="Self.THANG" />
+          <EntitySet Name="TUANs" EntityType="Self.TUAN" />
+          <AssociationSet Name="FK_PHANQUYEN2" Association="Self.FK_PHANQUYEN2">
+            <End Role="DUAN" EntitySet="DUANs" />
+            <End Role="PHANQUYEN" EntitySet="PHANQUYENs" />
+          </AssociationSet>
+          <AssociationSet Name="FL_CV_DUAN" Association="Self.FL_CV_DUAN">
+            <End Role="DUAN" EntitySet="DUANs" />
+            <End Role="QL_CONGVIEC" EntitySet="QL_CONGVIEC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CONGVIEC_MODULE1" Association="Self.FK_CONGVIEC_MODULE1">
+            <End Role="MODULE" EntitySet="MODULEs" />
+            <End Role="QL_CONGVIEC" EntitySet="QL_CONGVIEC" />
+          </AssociationSet>
+          <AssociationSet Name="fk_nv_ngdung" Association="Self.fk_nv_ngdung">
+            <End Role="NGUOIDUNG" EntitySet="NGUOIDUNGs" />
+            <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QL_NGUOIDUNGNHOMNGUOIDUNG2" Association="Self.FK_QL_NGUOIDUNGNHOMNGUOIDUNG2">
+            <End Role="NGUOIDUNG" EntitySet="NGUOIDUNGs" />
+            <End Role="QL_NGUOIDUNGNHOMNGUOIDUNG" EntitySet="QL_NGUOIDUNGNHOMNGUOIDUNG" />
+          </AssociationSet>
+          <AssociationSet Name="fk_qlcv_nv" Association="Self.fk_qlcv_nv">
+            <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+            <End Role="QL_CONGVIEC" EntitySet="QL_CONGVIEC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PHANQUYEN1" Association="Self.FK_PHANQUYEN1">
+            <End Role="NHOMNGUOIDUNG" EntitySet="NHOMNGUOIDUNGs" />
+            <End Role="PHANQUYEN" EntitySet="PHANQUYENs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QL_NGUOIDUNGNHOMNGUOIDUNG1" Association="Self.FK_QL_NGUOIDUNGNHOMNGUOIDUNG1">
+            <End Role="NHOMNGUOIDUNG" EntitySet="NHOMNGUOIDUNGs" />
+            <End Role="QL_NGUOIDUNGNHOMNGUOIDUNG" EntitySet="QL_NGUOIDUNGNHOMNGUOIDUNG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CV_TUAN" Association="Self.FK_CV_TUAN">
+            <End Role="TUAN" EntitySet="TUANs" />
+            <End Role="QL_CONGVIEC" EntitySet="QL_CONGVIEC" />
+          </AssociationSet>
+          <AssociationSet Name="fk_giatri_namthang" Association="Self.fk_giatri_namthang">
+            <End Role="THANG" EntitySet="THANGs" />
+            <End Role="TUAN" EntitySet="TUANs" />
+          </AssociationSet>
+          <FunctionImport Name="DELETEMONTH">
+            <Parameter Name="GIATRI" Mode="In" Type="Int32" />
+            <Parameter Name="NAM" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="getModalWeek" ReturnType="Collection(DBWM2Model.getModalWeek_Result)">
+            <Parameter Name="Thang" Mode="In" Type="Int32" />
+            <Parameter Name="Nam" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="getMonth" ReturnType="Collection(DBWM2Model.getMonth_Result)" />
+          <FunctionImport Name="getmonth1" ReturnType="Collection(DBWM2Model.getmonth1_Result)" />
+          <FunctionImport Name="getmonth2" ReturnType="Collection(DBWM2Model.getmonth2_Result)" />
+          <FunctionImport Name="getmonth3" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="getProject" ReturnType="Collection(DBWM2Model.getProject_Result)">
+          <Parameter Name="TENDN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getWeek" ReturnType="Collection(DBWM2Model.getWeek_Result)">
+          <Parameter Name="GiaTri" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="getWorkWeek" ReturnType="Collection(DBWM2Model.getWorkWeek_Result)" />
+          <FunctionImport Name="getWorkWeek1" ReturnType="Collection(DBWM2Model.getWorkWeek1_Result)" />
+          <FunctionImport Name="INSERTMONTH">
+            <Parameter Name="GIATRI" Mode="In" Type="Int32" />
+            <Parameter Name="Nam" Mode="In" Type="Int32" />
+            <Parameter Name="THANG" Mode="In" Type="String" />
+            <Parameter Name="NGAYBATDAU" Mode="In" Type="DateTime" />
+            <Parameter Name="NGAYKETTHUC" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="LOADBYMONTH" ReturnType="Collection(DBWM2Model.LOADBYMONTH_Result)">
+            <Parameter Name="MONTH" Mode="In" Type="Int32" />
+            <Parameter Name="YEAR" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="LOADBYMONTH1" ReturnType="Collection(DBWM2Model.LOADBYMONTH1_Result)">
+            <Parameter Name="MONTH" Mode="In" Type="Int32" />
+            <Parameter Name="YEAR" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="LOADBYMONTHAll" ReturnType="Collection(DBWM2Model.LOADBYMONTHAll_Result)" />
+          <FunctionImport Name="LOADBYMONTHAll1" ReturnType="Collection(DBWM2Model.LOADBYMONTHAll1_Result)" />
+          <FunctionImport Name="LOADBYMONTHTEST" ReturnType="Collection(DBWM2Model.LOADBYMONTHTEST_Result)">
+            <Parameter Name="MONTH" Mode="In" Type="Int32" />
+            <Parameter Name="YEAR" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="loadnam" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(DBWM2Model.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(DBWM2Model.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="TEST" ReturnType="Collection(DBWM2Model.TEST_Result)">
+          <Parameter Name="MONTH" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UPDATEMONTH">
+            <Parameter Name="GIATRI" Mode="In" Type="Int32" />
+            <Parameter Name="Nam" Mode="In" Type="Int32" />
+            <Parameter Name="THANG" Mode="In" Type="String" />
+            <Parameter Name="NGAYBATDAU" Mode="In" Type="DateTime" />
+            <Parameter Name="NGAYKETTHUC" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="GETPROJECTS" EntitySet="DUANs" ReturnType="Collection(DBWM2Model.DUAN)">
+          <Parameter Name="TENDN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="LockPlan">
+            <Parameter Name="giatri" Mode="In" Type="Int32" />
+            <Parameter Name="nam" Mode="In" Type="Int32" />
+            <Parameter Name="tinhtrang" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="LockPlan1">
+            <Parameter Name="giatri" Mode="In" Type="Int32" />
+            <Parameter Name="nam" Mode="In" Type="Int32" />
+            <Parameter Name="stt" Mode="In" Type="Int32" />
+            <Parameter Name="tinhtrang" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="LockPlan12" ReturnType="Collection(Boolean)">
+            <Parameter Name="giatri" Mode="In" Type="Int32" />
+            <Parameter Name="nam" Mode="In" Type="Int32" />
+            <Parameter Name="stt" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="getWorkWeek12" ReturnType="Collection(DBWM2Model.getWorkWeek12_Result)" />
+          <EntitySet Name="TODOLISTs" EntityType="DBWM2Model.TODOLIST" />
+          <AssociationSet Name="FK_TDL_DA" Association="DBWM2Model.FK_TDL_DA">
+            <End Role="DUAN" EntitySet="DUANs" />
+            <End Role="TODOLIST" EntitySet="TODOLISTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TDL_NV" Association="DBWM2Model.FK_TDL_NV">
+            <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+            <End Role="TODOLIST" EntitySet="TODOLISTs" />
+          </AssociationSet>
+          <FunctionImport Name="GetAllToDo" ReturnType="Collection(DBWM2Model.GetAllToDo_Result)">
+          <Parameter Name="MAMH" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetAllToDo1" ReturnType="Collection(DBWM2Model.GetAllToDo1_Result)">
+            <Parameter Name="MAMH" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetAllToDo2" ReturnType="Collection(DBWM2Model.GetAllToDo2_Result)">
+          <Parameter Name="MAMH" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sortToDo" ReturnType="Collection(DBWM2Model.sortToDo_Result)">
+            <Parameter Name="NOIDUNG" Mode="In" Type="String" />
+            <Parameter Name="MANV" Mode="In" Type="Int32" />
+            <Parameter Name="NGAYTRE" Mode="In" Type="Int32" />
+            <Parameter Name="TUNGAY" Mode="In" Type="DateTime" />
+            <Parameter Name="DENNGAY" Mode="In" Type="DateTime" />
+            <Parameter Name="TRANGTHAI" Mode="In" Type="Int32" />
+            <Parameter Name="MAMH" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sortToDo1" ReturnType="Collection(DBWM2Model.sortToDo1_Result)">
+            <Parameter Name="NOIDUNG" Mode="In" Type="String" />
+            <Parameter Name="MANV" Mode="In" Type="Int32" />
+            <Parameter Name="NGAYTRE" Mode="In" Type="Int32" />
+            <Parameter Name="TUNGAY" Mode="In" Type="DateTime" />
+            <Parameter Name="DENNGAY" Mode="In" Type="DateTime" />
+            <Parameter Name="TRANGTHAI" Mode="In" Type="Int32" />
+            <Parameter Name="MAMH" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sortToDo2" ReturnType="Collection(DBWM2Model.sortToDo2_Result)">
+            <Parameter Name="NOIDUNG" Mode="In" Type="String" />
+            <Parameter Name="MANV" Mode="In" Type="Int32" />
+            <Parameter Name="NGAYTRE" Mode="In" Type="Int32" />
+            <Parameter Name="TUNGAY" Mode="In" Type="DateTime" />
+            <Parameter Name="DENNGAY" Mode="In" Type="DateTime" />
+            <Parameter Name="TRANGTHAI" Mode="In" Type="Int32" />
+            <Parameter Name="MAMH" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="insertToDo">
+            <Parameter Name="noidung" Mode="In" Type="String" />
+            <Parameter Name="Manv" Mode="In" Type="Int32" />
+            <Parameter Name="thoihan" Mode="In" Type="String" />
+            <Parameter Name="ngaygiao" Mode="In" Type="DateTime" />
+            <Parameter Name="denhan" Mode="In" Type="DateTime" />
+            <Parameter Name="ghichu" Mode="In" Type="String" />
+            <Parameter Name="trangthai" Mode="In" Type="Int32" />
+            <Parameter Name="MaMH" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="insertToDo2">
+            <Parameter Name="noidung" Mode="In" Type="String" />
+            <Parameter Name="Manv" Mode="In" Type="Int32" />
+            <Parameter Name="ngaygiao" Mode="In" Type="DateTime" />
+            <Parameter Name="denhan" Mode="In" Type="DateTime" />
+            <Parameter Name="ghichu" Mode="In" Type="String" />
+            <Parameter Name="trangthai" Mode="In" Type="Int32" />
+            <Parameter Name="MaMH" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="deleteTDL">
+          <Parameter Name="MATDL" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UPDATETODO">
+            <Parameter Name="MATDL" Mode="In" Type="Int32" />
+            <Parameter Name="noidung" Mode="In" Type="String" />
+            <Parameter Name="Manv" Mode="In" Type="Int32" />
+            <Parameter Name="ngaygiao" Mode="In" Type="DateTime" />
+            <Parameter Name="denhan" Mode="In" Type="DateTime" />
+            <Parameter Name="ghichu" Mode="In" Type="String" />
+            <Parameter Name="trangthai" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="insertToDo3">
+            <Parameter Name="noidung" Mode="In" Type="String" />
+            <Parameter Name="Manv" Mode="In" Type="Int32" />
+            <Parameter Name="ngaygiao" Mode="In" Type="DateTime" />
+            <Parameter Name="denhan" Mode="In" Type="DateTime" />
+            <Parameter Name="ghichu" Mode="In" Type="String" />
+            <Parameter Name="trangthai" Mode="In" Type="Int32" />
+            <Parameter Name="MaMH" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UPDATETODO1">
+            <Parameter Name="MATDL" Mode="In" Type="Int32" />
+            <Parameter Name="noidung" Mode="In" Type="String" />
+            <Parameter Name="Manv" Mode="In" Type="Int32" />
+            <Parameter Name="ngaygiao" Mode="In" Type="DateTime" />
+            <Parameter Name="denhan" Mode="In" Type="DateTime" />
+            <Parameter Name="ghichu" Mode="In" Type="String" />
+            <Parameter Name="trangthai" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="insertToDo4">
+            <Parameter Name="noidung" Mode="In" Type="String" />
+            <Parameter Name="Manv" Mode="In" Type="Int32" />
+            <Parameter Name="ngaygiao" Mode="In" Type="DateTime" />
+            <Parameter Name="denhan" Mode="In" Type="DateTime" />
+            <Parameter Name="ghichu" Mode="In" Type="String" />
+            <Parameter Name="trangthai" Mode="In" Type="Int32" />
+            <Parameter Name="MaMH" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UPDATETODO2">
+            <Parameter Name="MATDL" Mode="In" Type="Int32" />
+            <Parameter Name="noidung" Mode="In" Type="String" />
+            <Parameter Name="Manv" Mode="In" Type="Int32" />
+            <Parameter Name="ngaygiao" Mode="In" Type="DateTime" />
+            <Parameter Name="denhan" Mode="In" Type="DateTime" />
+            <Parameter Name="ghichu" Mode="In" Type="String" />
+            <Parameter Name="trangthai" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="getModalWeek_Result">
+          <Property Type="String" Name="TENTUAN" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="STTTUAN" Nullable="true" />
+          <Property Type="DateTime" Name="TUNGAY" Nullable="true" />
+          <Property Type="DateTime" Name="DENNGAY" Nullable="true" />
+          <Property Type="Int32" Name="SOGIOLAM" Nullable="true" />
+          <Property Type="Boolean" Name="TINHTRANG" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="getMonth_Result">
+          <Property Type="Int32" Name="GIATRI" Nullable="false" />
+          <Property Type="String" Name="THANG" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="NGAYBATDAU" Nullable="true" />
+          <Property Type="DateTime" Name="NGAYKETTHUC" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="getmonth1_Result">
+          <Property Type="Int32" Name="GIATRI" Nullable="false" />
+          <Property Type="String" Name="THANG" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="NAM" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="getmonth2_Result">
+          <Property Type="Int32" Name="GIATRI" Nullable="false" />
+          <Property Type="Int32" Name="NAM" Nullable="false" />
+          <Property Type="String" Name="THANG" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="getProject_Result">
+          <Property Type="String" Name="MAMH" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="TENMH" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Icon" Nullable="true" />
+          <Property Type="String" Name="Link" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="getWeek_Result">
+          <Property Type="Int32" Name="GIATRI" Nullable="true" />
+          <Property Type="Int32" Name="MATUAN" Nullable="false" />
+          <Property Type="String" Name="TENTUAN" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="STTTUAN" Nullable="true" />
+          <Property Type="DateTime" Name="TUNGAY" Nullable="true" />
+          <Property Type="DateTime" Name="DENNGAY" Nullable="true" />
+          <Property Type="Int32" Name="SOGIOLAM" Nullable="true" />
+          <Property Type="Boolean" Name="TINHTRANG" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="getWorkWeek_Result">
+          <Property Type="Int32" Name="GIATRI" Nullable="false" />
+          <Property Type="String" Name="THANG" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="NGAYBATDAU" Nullable="true" />
+          <Property Type="DateTime" Name="NGAYKETTHUC" Nullable="true" />
+          <Property Type="String" Name="TENTUAN" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="STTTUAN" Nullable="true" />
+          <Property Type="DateTime" Name="TUNGAY" Nullable="true" />
+          <Property Type="DateTime" Name="DENNGAY" Nullable="true" />
+          <Property Type="Int32" Name="SOGIOLAM" Nullable="true" />
+          <Property Type="Boolean" Name="TINHTRANG" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="getWorkWeek1_Result">
+          <Property Type="Int32" Name="GIATRI" Nullable="false" />
+          <Property Type="String" Name="THANG" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="NGAYBATDAU" Nullable="true" />
+          <Property Type="DateTime" Name="NGAYKETTHUC" Nullable="true" />
+          <Property Type="String" Name="TENTUAN" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="STTTUAN" Nullable="true" />
+          <Property Type="DateTime" Name="TUNGAY" Nullable="true" />
+          <Property Type="DateTime" Name="DENNGAY" Nullable="true" />
+          <Property Type="Int32" Name="SOGIOLAM" Nullable="true" />
+          <Property Type="Boolean" Name="TINHTRANG" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="LOADBYMONTH_Result">
+          <Property Type="Int32" Name="GIATRI" Nullable="false" />
+          <Property Type="String" Name="THANG" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="NGAYBATDAU" Nullable="true" />
+          <Property Type="DateTime" Name="NGAYKETTHUC" Nullable="true" />
+          <Property Type="String" Name="TENTUAN" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="STTTUAN" Nullable="true" />
+          <Property Type="DateTime" Name="TUNGAY" Nullable="true" />
+          <Property Type="DateTime" Name="DENNGAY" Nullable="true" />
+          <Property Type="Int32" Name="SOGIOLAM" Nullable="true" />
+          <Property Type="Boolean" Name="TINHTRANG" Nullable="true" />
+          <Property Type="Int32" Name="Nam" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="LOADBYMONTH1_Result">
+          <Property Type="Int32" Name="GIATRI" Nullable="false" />
+          <Property Type="String" Name="THANG" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="NGAYBATDAU" Nullable="true" />
+          <Property Type="DateTime" Name="NGAYKETTHUC" Nullable="true" />
+          <Property Type="String" Name="TENTUAN" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="STTTUAN" Nullable="true" />
+          <Property Type="DateTime" Name="TUNGAY" Nullable="true" />
+          <Property Type="DateTime" Name="DENNGAY" Nullable="true" />
+          <Property Type="Int32" Name="SOGIOLAM" Nullable="true" />
+          <Property Type="Boolean" Name="TINHTRANG" Nullable="true" />
+          <Property Type="Int32" Name="Nam" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="LOADBYMONTHAll_Result">
+          <Property Type="Int32" Name="GIATRI" Nullable="false" />
+          <Property Type="String" Name="THANG" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="NGAYBATDAU" Nullable="true" />
+          <Property Type="DateTime" Name="NGAYKETTHUC" Nullable="true" />
+          <Property Type="String" Name="TENTUAN" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="STTTUAN" Nullable="true" />
+          <Property Type="DateTime" Name="TUNGAY" Nullable="true" />
+          <Property Type="DateTime" Name="DENNGAY" Nullable="true" />
+          <Property Type="Int32" Name="SOGIOLAM" Nullable="true" />
+          <Property Type="Boolean" Name="TINHTRANG" Nullable="true" />
+          <Property Type="Int32" Name="Nam" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="LOADBYMONTHAll1_Result">
+          <Property Type="Int32" Name="GIATRI" Nullable="false" />
+          <Property Type="String" Name="THANG" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="NGAYBATDAU" Nullable="true" />
+          <Property Type="DateTime" Name="NGAYKETTHUC" Nullable="true" />
+          <Property Type="String" Name="TENTUAN" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="STTTUAN" Nullable="true" />
+          <Property Type="DateTime" Name="TUNGAY" Nullable="true" />
+          <Property Type="DateTime" Name="DENNGAY" Nullable="true" />
+          <Property Type="Int32" Name="SOGIOLAM" Nullable="true" />
+          <Property Type="Boolean" Name="TINHTRANG" Nullable="true" />
+          <Property Type="Int32" Name="Nam" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="LOADBYMONTHTEST_Result">
+          <Property Type="Int32" Name="GIATRI" Nullable="false" />
+          <Property Type="String" Name="THANG" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="NGAYBATDAU" Nullable="true" />
+          <Property Type="DateTime" Name="NGAYKETTHUC" Nullable="true" />
+          <Property Type="String" Name="TENTUAN" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="STTTUAN" Nullable="true" />
+          <Property Type="DateTime" Name="TUNGAY" Nullable="true" />
+          <Property Type="DateTime" Name="DENNGAY" Nullable="true" />
+          <Property Type="Int32" Name="SOGIOLAM" Nullable="true" />
+          <Property Type="Boolean" Name="TINHTRANG" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="TEST_Result">
+          <Property Type="Int32" Name="GIATRI" Nullable="false" />
+          <Property Type="String" Name="THANG" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="NGAYBATDAU" Nullable="true" />
+          <Property Type="DateTime" Name="NGAYKETTHUC" Nullable="true" />
+          <Property Type="String" Name="TENTUAN" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="STTTUAN" Nullable="true" />
+          <Property Type="DateTime" Name="TUNGAY" Nullable="true" />
+          <Property Type="DateTime" Name="DENNGAY" Nullable="true" />
+          <Property Type="Int32" Name="SOGIOLAM" Nullable="true" />
+          <Property Type="Boolean" Name="TINHTRANG" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="getWorkWeek12_Result">
+          <Property Type="Int32" Name="GIATRI" Nullable="false" />
+          <Property Type="Int32" Name="Nam" Nullable="true" />
+          <Property Type="Int32" Name="MATUAN" Nullable="true" />
+          <Property Type="String" Name="THANG" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="NGAYBATDAU" Nullable="true" />
+          <Property Type="DateTime" Name="NGAYKETTHUC" Nullable="true" />
+          <Property Type="String" Name="TENTUAN" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="STTTUAN" Nullable="true" />
+          <Property Type="DateTime" Name="TUNGAY" Nullable="true" />
+          <Property Type="DateTime" Name="DENNGAY" Nullable="true" />
+          <Property Type="Int32" Name="SOGIOLAM" Nullable="true" />
+          <Property Type="Boolean" Name="TINHTRANG" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="TODOLIST">
+          <Key>
+            <PropertyRef Name="MATDL" />
+          </Key>
+          <Property Name="MATDL" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MANV" Type="Int32" />
+          <Property Name="THOIHAN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NGAYGIAO" Type="DateTime" Precision="0" />
+          <Property Name="DENHAN" Type="DateTime" Precision="0" />
+          <Property Name="GHICHU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TRANGTHAI" Type="Boolean" />
+          <Property Name="MAMH" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="DUAN" Relationship="DBWM2Model.FK_TDL_DA" FromRole="TODOLIST" ToRole="DUAN" />
+          <NavigationProperty Name="NHANVIEN" Relationship="DBWM2Model.FK_TDL_NV" FromRole="TODOLIST" ToRole="NHANVIEN" />
+          <Property Name="NOIDUNG" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_TDL_DA">
+          <End Type="DBWM2Model.DUAN" Role="DUAN" Multiplicity="0..1" />
+          <End Type="DBWM2Model.TODOLIST" Role="TODOLIST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DUAN">
+              <PropertyRef Name="MAMH" />
+            </Principal>
+            <Dependent Role="TODOLIST">
+              <PropertyRef Name="MAMH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TDL_NV">
+          <End Type="DBWM2Model.NHANVIEN" Role="NHANVIEN" Multiplicity="0..1" />
+          <End Type="DBWM2Model.TODOLIST" Role="TODOLIST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="MANV" />
+            </Principal>
+            <Dependent Role="TODOLIST">
+              <PropertyRef Name="MANV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="GetAllToDo_Result">
+          <Property Type="Int32" Name="MATDL" Nullable="false" />
+          <Property Type="String" Name="NOIDUNG" Nullable="true" />
+          <Property Type="Int32" Name="MANV" Nullable="true" />
+          <Property Type="String" Name="THOIHAN" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="NGAYGIAO" Nullable="true" />
+          <Property Type="DateTime" Name="DENHAN" Nullable="true" />
+          <Property Type="String" Name="GHICHU" Nullable="true" />
+          <Property Type="Boolean" Name="TRANGTHAI" Nullable="true" />
+          <Property Type="String" Name="MAMH" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="GetAllToDo1_Result">
+          <Property Type="Int32" Name="MATDL" Nullable="false" />
+          <Property Type="String" Name="NOIDUNG" Nullable="true" />
+          <Property Type="String" Name="HOTEN" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="NGAYGIAO" Nullable="true" />
+          <Property Type="DateTime" Name="DENHAN" Nullable="true" />
+          <Property Type="String" Name="GHICHU" Nullable="true" />
+          <Property Type="Boolean" Name="TRANGTHAI" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetAllToDo2_Result">
+          <Property Type="Int32" Name="MATDL" Nullable="false" />
+          <Property Type="String" Name="THOIHAN" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NOIDUNG" Nullable="true" />
+          <Property Type="String" Name="HOTEN" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="NGAYGIAO" Nullable="true" />
+          <Property Type="DateTime" Name="DENHAN" Nullable="true" />
+          <Property Type="String" Name="GHICHU" Nullable="true" />
+          <Property Type="Boolean" Name="TRANGTHAI" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sortToDo_Result">
+          <Property Type="Int32" Name="MATDL" Nullable="false" />
+          <Property Type="String" Name="THOIHAN" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NOIDUNG" Nullable="true" />
+          <Property Type="String" Name="HOTEN" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="NGAYGIAO" Nullable="true" />
+          <Property Type="DateTime" Name="DENHAN" Nullable="true" />
+          <Property Type="String" Name="GHICHU" Nullable="true" />
+          <Property Type="Boolean" Name="TRANGTHAI" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sortToDo1_Result">
+          <Property Type="Int32" Name="MATDL" Nullable="false" />
+          <Property Type="String" Name="THOIHAN" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NOIDUNG" Nullable="true" />
+          <Property Type="String" Name="HOTEN" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="NGAYGIAO" Nullable="true" />
+          <Property Type="DateTime" Name="DENHAN" Nullable="true" />
+          <Property Type="String" Name="GHICHU" Nullable="true" />
+          <Property Type="Boolean" Name="TRANGTHAI" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sortToDo2_Result">
+          <Property Type="Int32" Name="MATDL" Nullable="false" />
+          <Property Type="String" Name="THOIHAN" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NOIDUNG" Nullable="true" />
+          <Property Type="String" Name="HOTEN" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="NGAYGIAO" Nullable="true" />
+          <Property Type="DateTime" Name="DENHAN" Nullable="true" />
+          <Property Type="String" Name="GHICHU" Nullable="true" />
+          <Property Type="Boolean" Name="TRANGTHAI" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBWM2ModelStoreContainer" CdmEntityContainer="DBWM2Entities1">
+          <EntitySetMapping Name="DUANs">
+            <EntityTypeMapping TypeName="DBWM2Model.DUAN">
+              <MappingFragment StoreEntitySet="DUAN">
+                <ScalarProperty Name="MAMH" ColumnName="MAMH" />
+                <ScalarProperty Name="TENMH" ColumnName="TENMH" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MODULEs">
+            <EntityTypeMapping TypeName="DBWM2Model.MODULE">
+              <MappingFragment StoreEntitySet="MODULE">
+                <ScalarProperty Name="MAMODULE" ColumnName="MAMODULE" />
+                <ScalarProperty Name="TENMODULE" ColumnName="TENMODULE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NGUOIDUNGs">
+            <EntityTypeMapping TypeName="DBWM2Model.NGUOIDUNG">
+              <MappingFragment StoreEntitySet="NGUOIDUNG">
+                <ScalarProperty Name="TENDN" ColumnName="TENDN" />
+                <ScalarProperty Name="MATKHAU" ColumnName="MATKHAU" />
+                <ScalarProperty Name="HOATDONG" ColumnName="HOATDONG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NHANVIENs">
+            <EntityTypeMapping TypeName="DBWM2Model.NHANVIEN">
+              <MappingFragment StoreEntitySet="NHANVIEN">
+                <ScalarProperty Name="MANV" ColumnName="MANV" />
+                <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="GIOITINH" ColumnName="GIOITINH" />
+                <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+                <ScalarProperty Name="TENDN" ColumnName="TENDN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NHOMNGUOIDUNGs">
+            <EntityTypeMapping TypeName="DBWM2Model.NHOMNGUOIDUNG">
+              <MappingFragment StoreEntitySet="NHOMNGUOIDUNG">
+                <ScalarProperty Name="MANHOM" ColumnName="MANHOM" />
+                <ScalarProperty Name="TENNHOM" ColumnName="TENNHOM" />
+                <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PHANQUYENs">
+            <EntityTypeMapping TypeName="DBWM2Model.PHANQUYEN">
+              <MappingFragment StoreEntitySet="PHANQUYEN">
+                <ScalarProperty Name="MANHOM" ColumnName="MANHOM" />
+                <ScalarProperty Name="MAMH" ColumnName="MAMH" />
+                <ScalarProperty Name="COQUYEN" ColumnName="COQUYEN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QL_CONGVIEC">
+            <EntityTypeMapping TypeName="DBWM2Model.QL_CONGVIEC">
+              <MappingFragment StoreEntitySet="QL_CONGVIEC">
+                <ScalarProperty Name="MACV" ColumnName="MACV" />
+                <ScalarProperty Name="MAMH" ColumnName="MAMH" />
+                <ScalarProperty Name="MANV" ColumnName="MANV" />
+                <ScalarProperty Name="MATUAN" ColumnName="MATUAN" />
+                <ScalarProperty Name="TENCONGVIEC" ColumnName="TENCONGVIEC" />
+                <ScalarProperty Name="MAMODULE" ColumnName="MAMODULE" />
+                <ScalarProperty Name="Nguồn_gốc" ColumnName="Nguồn gốc" />
+                <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
+                <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QL_NGUOIDUNGNHOMNGUOIDUNG">
+            <EntityTypeMapping TypeName="DBWM2Model.QL_NGUOIDUNGNHOMNGUOIDUNG">
+              <MappingFragment StoreEntitySet="QL_NGUOIDUNGNHOMNGUOIDUNG">
+                <ScalarProperty Name="TENDN" ColumnName="TENDN" />
+                <ScalarProperty Name="MANHOM" ColumnName="MANHOM" />
+                <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DBWM2Model.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="THANGs">
+            <EntityTypeMapping TypeName="DBWM2Model.THANG">
+              <MappingFragment StoreEntitySet="THANG">
+                <ScalarProperty Name="GIATRI" ColumnName="GIATRI" />
+                <ScalarProperty Name="NAM" ColumnName="NAM" />
+                <ScalarProperty Name="THANG1" ColumnName="THANG" />
+                <ScalarProperty Name="NGAYBATDAU" ColumnName="NGAYBATDAU" />
+                <ScalarProperty Name="NGAYKETTHUC" ColumnName="NGAYKETTHUC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TUANs">
+            <EntityTypeMapping TypeName="DBWM2Model.TUAN">
+              <MappingFragment StoreEntitySet="TUAN">
+                <ScalarProperty Name="MATUAN" ColumnName="MATUAN" />
+                <ScalarProperty Name="GIATRI" ColumnName="GIATRI" />
+                <ScalarProperty Name="STTTUAN" ColumnName="STTTUAN" />
+                <ScalarProperty Name="TENTUAN" ColumnName="TENTUAN" />
+                <ScalarProperty Name="TUNGAY" ColumnName="TUNGAY" />
+                <ScalarProperty Name="DENNGAY" ColumnName="DENNGAY" />
+                <ScalarProperty Name="SOGIOLAM" ColumnName="SOGIOLAM" />
+                <ScalarProperty Name="TINHTRANG" ColumnName="TINHTRANG" />
+                <ScalarProperty Name="Nam" ColumnName="Nam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="DELETEMONTH" FunctionName="DBWM2Model.Store.DELETEMONTH" />
+          <FunctionImportMapping FunctionImportName="getModalWeek" FunctionName="DBWM2Model.Store.getModalWeek">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBWM2Model.getModalWeek_Result">
+                <ScalarProperty Name="TENTUAN" ColumnName="TENTUAN" />
+                <ScalarProperty Name="STTTUAN" ColumnName="STTTUAN" />
+                <ScalarProperty Name="TUNGAY" ColumnName="TUNGAY" />
+                <ScalarProperty Name="DENNGAY" ColumnName="DENNGAY" />
+                <ScalarProperty Name="SOGIOLAM" ColumnName="SOGIOLAM" />
+                <ScalarProperty Name="TINHTRANG" ColumnName="TINHTRANG" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getMonth" FunctionName="DBWM2Model.Store.getMonth">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBWM2Model.getMonth_Result">
+                <ScalarProperty Name="GIATRI" ColumnName="GIATRI" />
+                <ScalarProperty Name="THANG" ColumnName="THANG" />
+                <ScalarProperty Name="NGAYBATDAU" ColumnName="NGAYBATDAU" />
+                <ScalarProperty Name="NGAYKETTHUC" ColumnName="NGAYKETTHUC" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getmonth1" FunctionName="DBWM2Model.Store.getmonth1">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBWM2Model.getmonth1_Result">
+                <ScalarProperty Name="GIATRI" ColumnName="GIATRI" />
+                <ScalarProperty Name="THANG" ColumnName="THANG" />
+                <ScalarProperty Name="NAM" ColumnName="NAM" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getmonth2" FunctionName="DBWM2Model.Store.getmonth2">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBWM2Model.getmonth2_Result">
+                <ScalarProperty Name="GIATRI" ColumnName="GIATRI" />
+                <ScalarProperty Name="NAM" ColumnName="NAM" />
+                <ScalarProperty Name="THANG" ColumnName="THANG" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getmonth3" FunctionName="DBWM2Model.Store.getmonth3" />
+          <FunctionImportMapping FunctionImportName="getProject" FunctionName="DBWM2Model.Store.getProject">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBWM2Model.getProject_Result">
+                <ScalarProperty Name="MAMH" ColumnName="MAMH" />
+                <ScalarProperty Name="TENMH" ColumnName="TENMH" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getWeek" FunctionName="DBWM2Model.Store.getWeek">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBWM2Model.getWeek_Result">
+                <ScalarProperty Name="GIATRI" ColumnName="GIATRI" />
+                <ScalarProperty Name="MATUAN" ColumnName="MATUAN" />
+                <ScalarProperty Name="TENTUAN" ColumnName="TENTUAN" />
+                <ScalarProperty Name="STTTUAN" ColumnName="STTTUAN" />
+                <ScalarProperty Name="TUNGAY" ColumnName="TUNGAY" />
+                <ScalarProperty Name="DENNGAY" ColumnName="DENNGAY" />
+                <ScalarProperty Name="SOGIOLAM" ColumnName="SOGIOLAM" />
+                <ScalarProperty Name="TINHTRANG" ColumnName="TINHTRANG" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getWorkWeek" FunctionName="DBWM2Model.Store.getWorkWeek">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBWM2Model.getWorkWeek_Result">
+                <ScalarProperty Name="GIATRI" ColumnName="GIATRI" />
+                <ScalarProperty Name="THANG" ColumnName="THANG" />
+                <ScalarProperty Name="NGAYBATDAU" ColumnName="NGAYBATDAU" />
+                <ScalarProperty Name="NGAYKETTHUC" ColumnName="NGAYKETTHUC" />
+                <ScalarProperty Name="TENTUAN" ColumnName="TENTUAN" />
+                <ScalarProperty Name="STTTUAN" ColumnName="STTTUAN" />
+                <ScalarProperty Name="TUNGAY" ColumnName="TUNGAY" />
+                <ScalarProperty Name="DENNGAY" ColumnName="DENNGAY" />
+                <ScalarProperty Name="SOGIOLAM" ColumnName="SOGIOLAM" />
+                <ScalarProperty Name="TINHTRANG" ColumnName="TINHTRANG" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getWorkWeek1" FunctionName="DBWM2Model.Store.getWorkWeek1">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBWM2Model.getWorkWeek1_Result">
+                <ScalarProperty Name="GIATRI" ColumnName="GIATRI" />
+                <ScalarProperty Name="THANG" ColumnName="THANG" />
+                <ScalarProperty Name="NGAYBATDAU" ColumnName="NGAYBATDAU" />
+                <ScalarProperty Name="NGAYKETTHUC" ColumnName="NGAYKETTHUC" />
+                <ScalarProperty Name="TENTUAN" ColumnName="TENTUAN" />
+                <ScalarProperty Name="STTTUAN" ColumnName="STTTUAN" />
+                <ScalarProperty Name="TUNGAY" ColumnName="TUNGAY" />
+                <ScalarProperty Name="DENNGAY" ColumnName="DENNGAY" />
+                <ScalarProperty Name="SOGIOLAM" ColumnName="SOGIOLAM" />
+                <ScalarProperty Name="TINHTRANG" ColumnName="TINHTRANG" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="INSERTMONTH" FunctionName="DBWM2Model.Store.INSERTMONTH" />
+          <FunctionImportMapping FunctionImportName="LOADBYMONTH" FunctionName="DBWM2Model.Store.LOADBYMONTH">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBWM2Model.LOADBYMONTH_Result">
+                <ScalarProperty Name="GIATRI" ColumnName="GIATRI" />
+                <ScalarProperty Name="THANG" ColumnName="THANG" />
+                <ScalarProperty Name="NGAYBATDAU" ColumnName="NGAYBATDAU" />
+                <ScalarProperty Name="NGAYKETTHUC" ColumnName="NGAYKETTHUC" />
+                <ScalarProperty Name="TENTUAN" ColumnName="TENTUAN" />
+                <ScalarProperty Name="STTTUAN" ColumnName="STTTUAN" />
+                <ScalarProperty Name="TUNGAY" ColumnName="TUNGAY" />
+                <ScalarProperty Name="DENNGAY" ColumnName="DENNGAY" />
+                <ScalarProperty Name="SOGIOLAM" ColumnName="SOGIOLAM" />
+                <ScalarProperty Name="TINHTRANG" ColumnName="TINHTRANG" />
+                <ScalarProperty Name="Nam" ColumnName="Nam" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="LOADBYMONTH1" FunctionName="DBWM2Model.Store.LOADBYMONTH1">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBWM2Model.LOADBYMONTH1_Result">
+                <ScalarProperty Name="GIATRI" ColumnName="GIATRI" />
+                <ScalarProperty Name="THANG" ColumnName="THANG" />
+                <ScalarProperty Name="NGAYBATDAU" ColumnName="NGAYBATDAU" />
+                <ScalarProperty Name="NGAYKETTHUC" ColumnName="NGAYKETTHUC" />
+                <ScalarProperty Name="TENTUAN" ColumnName="TENTUAN" />
+                <ScalarProperty Name="STTTUAN" ColumnName="STTTUAN" />
+                <ScalarProperty Name="TUNGAY" ColumnName="TUNGAY" />
+                <ScalarProperty Name="DENNGAY" ColumnName="DENNGAY" />
+                <ScalarProperty Name="SOGIOLAM" ColumnName="SOGIOLAM" />
+                <ScalarProperty Name="TINHTRANG" ColumnName="TINHTRANG" />
+                <ScalarProperty Name="Nam" ColumnName="Nam" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="LOADBYMONTHAll" FunctionName="DBWM2Model.Store.LOADBYMONTHAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBWM2Model.LOADBYMONTHAll_Result">
+                <ScalarProperty Name="GIATRI" ColumnName="GIATRI" />
+                <ScalarProperty Name="THANG" ColumnName="THANG" />
+                <ScalarProperty Name="NGAYBATDAU" ColumnName="NGAYBATDAU" />
+                <ScalarProperty Name="NGAYKETTHUC" ColumnName="NGAYKETTHUC" />
+                <ScalarProperty Name="TENTUAN" ColumnName="TENTUAN" />
+                <ScalarProperty Name="STTTUAN" ColumnName="STTTUAN" />
+                <ScalarProperty Name="TUNGAY" ColumnName="TUNGAY" />
+                <ScalarProperty Name="DENNGAY" ColumnName="DENNGAY" />
+                <ScalarProperty Name="SOGIOLAM" ColumnName="SOGIOLAM" />
+                <ScalarProperty Name="TINHTRANG" ColumnName="TINHTRANG" />
+                <ScalarProperty Name="Nam" ColumnName="Nam" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="LOADBYMONTHAll1" FunctionName="DBWM2Model.Store.LOADBYMONTHAll1">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBWM2Model.LOADBYMONTHAll1_Result">
+                <ScalarProperty Name="GIATRI" ColumnName="GIATRI" />
+                <ScalarProperty Name="THANG" ColumnName="THANG" />
+                <ScalarProperty Name="NGAYBATDAU" ColumnName="NGAYBATDAU" />
+                <ScalarProperty Name="NGAYKETTHUC" ColumnName="NGAYKETTHUC" />
+                <ScalarProperty Name="TENTUAN" ColumnName="TENTUAN" />
+                <ScalarProperty Name="STTTUAN" ColumnName="STTTUAN" />
+                <ScalarProperty Name="TUNGAY" ColumnName="TUNGAY" />
+                <ScalarProperty Name="DENNGAY" ColumnName="DENNGAY" />
+                <ScalarProperty Name="SOGIOLAM" ColumnName="SOGIOLAM" />
+                <ScalarProperty Name="TINHTRANG" ColumnName="TINHTRANG" />
+                <ScalarProperty Name="Nam" ColumnName="Nam" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="LOADBYMONTHTEST" FunctionName="DBWM2Model.Store.LOADBYMONTHTEST">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBWM2Model.LOADBYMONTHTEST_Result">
+                <ScalarProperty Name="GIATRI" ColumnName="GIATRI" />
+                <ScalarProperty Name="THANG" ColumnName="THANG" />
+                <ScalarProperty Name="NGAYBATDAU" ColumnName="NGAYBATDAU" />
+                <ScalarProperty Name="NGAYKETTHUC" ColumnName="NGAYKETTHUC" />
+                <ScalarProperty Name="TENTUAN" ColumnName="TENTUAN" />
+                <ScalarProperty Name="STTTUAN" ColumnName="STTTUAN" />
+                <ScalarProperty Name="TUNGAY" ColumnName="TUNGAY" />
+                <ScalarProperty Name="DENNGAY" ColumnName="DENNGAY" />
+                <ScalarProperty Name="SOGIOLAM" ColumnName="SOGIOLAM" />
+                <ScalarProperty Name="TINHTRANG" ColumnName="TINHTRANG" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="loadnam" FunctionName="DBWM2Model.Store.loadnam" />
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="DBWM2Model.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="DBWM2Model.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="DBWM2Model.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="DBWM2Model.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBWM2Model.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="DBWM2Model.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBWM2Model.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="DBWM2Model.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="DBWM2Model.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="TEST" FunctionName="DBWM2Model.Store.TEST">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBWM2Model.TEST_Result">
+                <ScalarProperty Name="GIATRI" ColumnName="GIATRI" />
+                <ScalarProperty Name="THANG" ColumnName="THANG" />
+                <ScalarProperty Name="NGAYBATDAU" ColumnName="NGAYBATDAU" />
+                <ScalarProperty Name="NGAYKETTHUC" ColumnName="NGAYKETTHUC" />
+                <ScalarProperty Name="TENTUAN" ColumnName="TENTUAN" />
+                <ScalarProperty Name="STTTUAN" ColumnName="STTTUAN" />
+                <ScalarProperty Name="TUNGAY" ColumnName="TUNGAY" />
+                <ScalarProperty Name="DENNGAY" ColumnName="DENNGAY" />
+                <ScalarProperty Name="SOGIOLAM" ColumnName="SOGIOLAM" />
+                <ScalarProperty Name="TINHTRANG" ColumnName="TINHTRANG" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UPDATEMONTH" FunctionName="DBWM2Model.Store.UPDATEMONTH" />
+          <FunctionImportMapping FunctionImportName="GETPROJECTS" FunctionName="DBWM2Model.Store.getProject" />
+          <FunctionImportMapping FunctionImportName="LockPlan12" FunctionName="DBWM2Model.Store.LockPlan12" />
+          <FunctionImportMapping FunctionImportName="getWorkWeek12" FunctionName="DBWM2Model.Store.getWorkWeek12">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBWM2Model.getWorkWeek12_Result">
+                <ScalarProperty Name="GIATRI" ColumnName="GIATRI" />
+                <ScalarProperty Name="Nam" ColumnName="Nam" />
+                <ScalarProperty Name="MATUAN" ColumnName="MATUAN" />
+                <ScalarProperty Name="THANG" ColumnName="THANG" />
+                <ScalarProperty Name="NGAYBATDAU" ColumnName="NGAYBATDAU" />
+                <ScalarProperty Name="NGAYKETTHUC" ColumnName="NGAYKETTHUC" />
+                <ScalarProperty Name="TENTUAN" ColumnName="TENTUAN" />
+                <ScalarProperty Name="STTTUAN" ColumnName="STTTUAN" />
+                <ScalarProperty Name="TUNGAY" ColumnName="TUNGAY" />
+                <ScalarProperty Name="DENNGAY" ColumnName="DENNGAY" />
+                <ScalarProperty Name="SOGIOLAM" ColumnName="SOGIOLAM" />
+                <ScalarProperty Name="TINHTRANG" ColumnName="TINHTRANG" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="TODOLISTs">
+            <EntityTypeMapping TypeName="DBWM2Model.TODOLIST">
+              <MappingFragment StoreEntitySet="TODOLIST">
+                <ScalarProperty Name="NOIDUNG" ColumnName="NOIDUNG" />
+                <ScalarProperty Name="MAMH" ColumnName="MAMH" />
+                <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
+                <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
+                <ScalarProperty Name="DENHAN" ColumnName="DENHAN" />
+                <ScalarProperty Name="NGAYGIAO" ColumnName="NGAYGIAO" />
+                <ScalarProperty Name="THOIHAN" ColumnName="THOIHAN" />
+                <ScalarProperty Name="MANV" ColumnName="MANV" />
+                <ScalarProperty Name="MATDL" ColumnName="MATDL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetAllToDo2" FunctionName="DBWM2Model.Store.GetAllToDo2">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBWM2Model.GetAllToDo2_Result">
+                <ScalarProperty Name="MATDL" ColumnName="MATDL" />
+                <ScalarProperty Name="THOIHAN" ColumnName="THOIHAN" />
+                <ScalarProperty Name="NOIDUNG" ColumnName="NOIDUNG" />
+                <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
+                <ScalarProperty Name="NGAYGIAO" ColumnName="NGAYGIAO" />
+                <ScalarProperty Name="DENHAN" ColumnName="DENHAN" />
+                <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
+                <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sortToDo" FunctionName="DBWM2Model.Store.sortToDo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBWM2Model.sortToDo_Result">
+                <ScalarProperty Name="MATDL" ColumnName="MATDL" />
+                <ScalarProperty Name="THOIHAN" ColumnName="THOIHAN" />
+                <ScalarProperty Name="NOIDUNG" ColumnName="NOIDUNG" />
+                <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
+                <ScalarProperty Name="NGAYGIAO" ColumnName="NGAYGIAO" />
+                <ScalarProperty Name="DENHAN" ColumnName="DENHAN" />
+                <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
+                <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sortToDo1" FunctionName="DBWM2Model.Store.sortToDo1">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBWM2Model.sortToDo1_Result">
+                <ScalarProperty Name="MATDL" ColumnName="MATDL" />
+                <ScalarProperty Name="THOIHAN" ColumnName="THOIHAN" />
+                <ScalarProperty Name="NOIDUNG" ColumnName="NOIDUNG" />
+                <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
+                <ScalarProperty Name="NGAYGIAO" ColumnName="NGAYGIAO" />
+                <ScalarProperty Name="DENHAN" ColumnName="DENHAN" />
+                <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
+                <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sortToDo2" FunctionName="DBWM2Model.Store.sortToDo2">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBWM2Model.sortToDo2_Result">
+                <ScalarProperty Name="MATDL" ColumnName="MATDL" />
+                <ScalarProperty Name="THOIHAN" ColumnName="THOIHAN" />
+                <ScalarProperty Name="NOIDUNG" ColumnName="NOIDUNG" />
+                <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
+                <ScalarProperty Name="NGAYGIAO" ColumnName="NGAYGIAO" />
+                <ScalarProperty Name="DENHAN" ColumnName="DENHAN" />
+                <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
+                <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="deleteTDL" FunctionName="DBWM2Model.Store.deleteTDL" />
+          <FunctionImportMapping FunctionImportName="insertToDo3" FunctionName="DBWM2Model.Store.insertToDo3" />
+          <FunctionImportMapping FunctionImportName="UPDATETODO1" FunctionName="DBWM2Model.Store.UPDATETODO1" />
+          <FunctionImportMapping FunctionImportName="insertToDo4" FunctionName="DBWM2Model.Store.insertToDo4" />
+          <FunctionImportMapping FunctionImportName="UPDATETODO2" FunctionName="DBWM2Model.Store.UPDATETODO2" />
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

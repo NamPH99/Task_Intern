@@ -1,0 +1,187 @@
+﻿@model IEnumerable<WorkManager.Models.THANG>
+
+@{
+    ViewBag.Title = "WorkingWeek";
+    Layout = "~/Views/Shared/View.cshtml";
+    WorkManager.Models.THANG thang = new WorkManager.Models.THANG();
+    WorkManager.Models.DBWM2Entities1 db = new WorkManager.Models.DBWM2Entities1();
+    var MN = Session["MaNhom"] as string;
+}
+
+@section scripts {
+    <script src="~/Scripts/JavaScript/Work.js"></script>
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<div style="float:left;margin-top:-50px">
+    <h1>Tuần làm việc</h1>
+</div>
+<div style="float:right;margin-top:-50px">
+    @if (MN == "admin")
+    {
+        <button class="btn btn-primary" onclick="ShowMoldalDialogAddWorkWeek()">Insert/Update</button>
+
+
+
+
+        <button type="button" onclick="DELETE()" class="btn btn-primary">Delete</button>
+        <button type="button" onclick="LockPlan()" class="btn btn-primary">Lock Plan</button>
+    }
+    else
+    {
+        <button class="btn btn-primary" hidden onclick="ShowMoldalDialogAddWorkWeek()">Insert/Update</button>
+
+
+
+
+        <button type="button" hidden onclick="DELETE()" class="btn btn-primary">Delete</button>
+        <button type="button" onclick="LockPlan()" hidden class="btn btn-primary">Lock Plan</button>
+    }
+
+</div>
+<div style="border: 1px solid black; height: 70px; margin-top: 80px; padding-top:15px" class="container-fluid; ">
+    <div class="row">
+        <div class="col-md-1" style="text-align:center;padding-top:5px;">
+            <h7>Tháng</h7>
+        </div>
+        <div class="col-md-4">
+            <select class="form-control" style="width: 70%" id="selectOptionsCategory"></select>
+        </div>
+
+    </div>
+
+</div>
+
+<table class="table table-striped" style="margin-top:40px" id="tblWeek">
+    <thead>
+        <tr>
+            <th><input type="checkbox" /></th>
+            <th>Giá trị</th>
+            <th>Tháng</th>
+            <th>Ngày bắt đầu</th>
+            <th>Ngày kết thúc</th>
+            <th>Tuần</th>
+            <th>STT Tuần</th>
+            <th>Từ ngày</th>
+            <th>Đến ngày</th>
+            <th>Số giờ làm</th>
+            <th>Đã khóa</th>
+
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+<!-- The Modal -->
+<!-- The Modal -->
+<div class="modal" id="AddWorkWeek" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="myModalLablePhoto">
+    <div class="modal-dialog  modal-lg">
+        <div class="modal-content">
+            <input hidden id="giatri" value="" />
+            <!-- Modal Header -->
+            <div class="modal-header" style="text-align:center">
+                <h4 class="modal-title" style="text-align:center" id="Control">THÊM TUẦN LÀM VIỆC</h4>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <label>Tên tháng <span style="color:red">*</span></label>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" id="NameMonth">
+                            </div>
+
+                            <div class="col-lg-1">
+                                <label>Năm </label>
+                            </div>
+                            <div class="col-lg-3">
+                                @*<select class="form-control" style="width: 70%" id="YEAR"></select>*@
+                                <input type="number" style="width: 100px" class="form-control" id="YEAR" min="2021" max="2024">
+                            </div>
+                        </div>
+                        <br />
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <label>Ngày bắt đầu <span style="color:red">*</span></label>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="date" style="width: 100%" class="form-control" id="FirstDay">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-11">
+                                <label><span style="color: purple">* Ngày bắt đầu nên là ngày thứ hai đầu tiên của tháng</span></label>
+                            </div>
+                        </div>
+
+                        <br />
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <label>Ngày kết thúc<span style="color:red">*</span></label>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="date" style="width: 100%" class="form-control" id="LastDay">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-11">
+                                <label><span style="color:purple">* Ngày kết thúc nên là ngày của thứ sáu (hoặc bảy) của tuần cuối cùng (trong cùng tháng hoặc tháng tiếp theo)</span></label>
+                            </div>
+                        </div>
+                        <br />
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <label>Giá trị</label>
+                            </div>
+                            <div class="col-lg-6">
+                                @*<select class="form-control" style="width: 70%" id="MonthModal"></select>*@
+                                <input type="number" style="width: 100px" class="form-control" id="MonthModal" min="1" max="12">
+                            </div>
+                        </div>
+                        <br />
+
+                    </div>
+
+                    <div class="form-group">
+                        <table class="table table-striped" style="margin-top:40px" id="tblModal">
+                            <thead>
+                                <tr>
+                                    <th>Tên tuần</th>
+                                    <th>Thứ tự</th>
+                                    <th>Từ ngày</th>
+                                    <th>Đến ngày</th>
+                                    <th>Số giờ làm</th>
+                                    <th>Đã khóa</th>
+                                    <td></td>
+                                </tr>
+                            </thead>
+                            <tbody id="LoadWeekByMonth">
+                            </tbody>
+                        </table>
+                        <br />
+                    </div>
+                </form>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <div class="row"></div>
+                <div class="col-md-3"> <button class="btn btn-primary" onclick="Insert()">Lưu & Thêm</button></div>
+                <div class="col-md-3">   <button class="btn btn-primary" onclick="Update()">Lưu & đóng</button></div>
+                <div class="col-md-3">  <button type="button" class="btn btn-primary" data-dismiss="modal">Đóng</button></div>
+
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
